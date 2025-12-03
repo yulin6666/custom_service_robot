@@ -1,0 +1,16 @@
+# LangChain核心
+langchain==0.3.13
+langchain-core==0.3.28
+langchain-openai==0.2.14
+langchain-community==0.3.13
+
+# LangGraph
+langgraph==0.2.59
+
+# HuggingFace
+langchain-huggingface==0.1.2
+sentence-transformers==3.3.1
+
+# 基础依赖
+openai>=1.58.1,<2.0.0
+pydantic==2.10.4
