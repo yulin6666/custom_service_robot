@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  customer-service-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: customer-service-bot
+    ports:
+      - "8000:8000"
+    environment:
+      # 可以通过环境变量配置
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # 挂载知识库文件（如果需要动态更新）
+      - ./customer_service_kb.txt:/app/customer_service_kb.txt:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+    driver: bridge

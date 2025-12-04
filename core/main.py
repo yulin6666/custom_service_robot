@@ -2,11 +2,13 @@
 客服机器人主入口
 """
 import uuid
+from typing import Dict, Any
 from langchain_core.messages import HumanMessage
 
 from .graph import create_customer_service_graph
 from .knowledge_base import knowledge_base
 from .models import CustomerServiceState
+from .log_collector import LogCollector
 
 
 class CustomerServiceBot:
@@ -64,46 +66,54 @@ class CustomerServiceBot:
 
         return session_id
 
-    def chat(self, user_input: str, session_id: str = None) -> str:
+    def chat(self, user_input: str, session_id: str = None, capture_logs: bool = False) -> Dict[str, Any]:
         """
         处理用户输入并返回响应
 
         Args:
             user_input: 用户输入的消息
             session_id: 会话ID，如果为None则创建新会话
+            capture_logs: 是否捕获并返回执行日志
 
         Returns:
-            机器人的响应
+            如果 capture_logs=False: 返回字符串响应（保持向后兼容）
+            如果 capture_logs=True: 返回字典 {"response": str, "logs": List[str], "session_id": str}
         """
-        # 如果没有提供session_id，创建新会话
-        if session_id is None or session_id not in self.sessions:
-            session_id = self.create_session()
+        # 创建日志收集器
+        log_collector = None
+        if capture_logs:
+            log_collector = LogCollector()
+            log_collector.start_capture()
 
-        # 获取会话历史
-        session = self.sessions[session_id]
-        user_id = session["user_id"]
-
-        # 添加用户消息
-        user_message = HumanMessage(content=user_input)
-        session["messages"].append(user_message)
-
-        # 构建初始状态
-        initial_state: CustomerServiceState = {
-            "messages": [user_message],
-            "session_id": session_id,
-            "user_id": user_id,
-            "intent": None,
-            "intent_confidence": None,
-            "entities": None,
-            "retrieved_docs": None,
-            "tool_results": None,
-            "need_human": False,
-            "final_response": None,
-            "next_step": None
-        }
-
-        # 执行状态图
         try:
+            # 如果没有提供session_id，创建新会话
+            if session_id is None or session_id not in self.sessions:
+                session_id = self.create_session()
+
+            # 获取会话历史
+            session = self.sessions[session_id]
+            user_id = session["user_id"]
+
+            # 添加用户消息
+            user_message = HumanMessage(content=user_input)
+            session["messages"].append(user_message)
+
+            # 构建初始状态
+            initial_state: CustomerServiceState = {
+                "messages": [user_message],
+                "session_id": session_id,
+                "user_id": user_id,
+                "intent": None,
+                "intent_confidence": None,
+                "entities": None,
+                "retrieved_docs": None,
+                "tool_results": None,
+                "need_human": False,
+                "final_response": None,
+                "next_step": None
+            }
+
+            # 执行状态图
             result = self.graph.invoke(initial_state)
 
             # 获取最终响应
@@ -112,13 +122,36 @@ class CustomerServiceBot:
             # 保存到会话历史
             session["messages"].append(HumanMessage(content=response))
 
-            return response
+            # 返回结果
+            if capture_logs:
+                logs = log_collector.stop_capture()
+                return {
+                    "response": response,
+                    "logs": [log for log in logs if log.strip()],  # 过滤空行
+                    "session_id": session_id,
+                    "status": "success"
+                }
+            else:
+                return response
 
         except Exception as e:
             print(f"处理消息时出错: {e}")
             import traceback
             traceback.print_exc()
-            return "抱歉，处理您的请求时遇到了问题，请稍后再试。"
+
+            error_msg = "抱歉，处理您的请求时遇到了问题，请稍后再试。"
+
+            if capture_logs:
+                logs = log_collector.stop_capture() if log_collector else []
+                return {
+                    "response": error_msg,
+                    "logs": [log for log in logs if log.strip()],
+                    "session_id": session_id,
+                    "status": "error",
+                    "error": str(e)
+                }
+            else:
+                return error_msg
 
     def run_interactive(self):
         """运行交互式命令行界面"""
