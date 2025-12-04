@@ -188,14 +188,35 @@ Railway 会自动为你的自定义域名生成 SSL 证书（Let's Encrypt）。
 
 ## 性能优化
 
-### 1. 增加内存
+### 1. Docker BuildKit 缓存加速（推荐）
+
+Dockerfile 已配置使用 BuildKit 缓存挂载，可以显著加快构建速度：
+
+**本地构建时启用 BuildKit**：
+```bash
+# 方式1：环境变量
+export DOCKER_BUILDKIT=1
+docker build -t customer-service-bot .
+
+# 方式2：直接使用 docker buildx
+docker buildx build -t customer-service-bot .
+```
+
+**优化效果**：
+- ✅ pip 依赖缓存：第二次构建时不会重新下载 torch（899.8 MB）等大包
+- ✅ HuggingFace 模型缓存：embedding 模型只下载一次
+- ✅ 构建时间：从 5-10 分钟降低到 30 秒左右（当缓存命中时）
+
+**Railway 自动使用 BuildKit**：Railway 平台默认启用 BuildKit，无需额外配置。
+
+### 2. 增加内存
 
 如果遇到 OOM（内存不足）错误：
 
 1. 进入项目 → **Settings** → **Resources**
 2. 增加 Memory 限制到 2GB 或更高
 
-### 2. 使用 Railway 的持久化存储
+### 3. 使用 Railway 的持久化存储
 
 如果需要持久化数据：
 
@@ -203,12 +224,14 @@ Railway 会自动为你的自定义域名生成 SSL 证书（Let's Encrypt）。
 railway volume create --name data --mount-path /app/data
 ```
 
-### 3. 优化模型加载
+### 4. 优化模型加载
 
-embedding 模型首次加载较慢，已在 Dockerfile 中预下载：
+embedding 模型首次加载较慢，已在 Dockerfile 中预下载并使用缓存：
 
 ```dockerfile
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
+# 使用缓存挂载避免重复下载
+RUN --mount=type=cache,target=/app/.cache/huggingface \
+    python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
 ```
 
 ---

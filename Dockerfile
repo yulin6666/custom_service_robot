@@ -7,7 +7,6 @@ WORKDIR /app
 # 设置环境变量
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
     # HuggingFace 模型缓存目录
     TRANSFORMERS_CACHE=/app/.cache/huggingface \
@@ -24,10 +23,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 复制依赖文件
 COPY requirements.txt .
 
-# 安装 Python 依赖
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt && \
-    # 预下载 embedding 模型以加快启动速度
+# 安装 Python 依赖（使用缓存挂载加速下载）
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# 预下载 embedding 模型（使用缓存挂载）
+RUN --mount=type=cache,target=/app/.cache/huggingface \
     python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
 
 # 复制应用代码
