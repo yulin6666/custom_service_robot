@@ -12,7 +12,9 @@ ENV PYTHONUNBUFFERED=1 \
     TRANSFORMERS_CACHE=/app/.cache/huggingface \
     HF_HOME=/app/.cache/huggingface \
     # 默认端口
-    PORT=8080
+    PORT=8080 \
+    # 使用国内镜像加速（可选）
+    PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 安装系统依赖
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -23,13 +25,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 复制依赖文件
 COPY requirements.txt .
 
-# 安装 Python 依赖（使用缓存挂载加速下载）
-RUN --mount=type=cache,target=/root/.cache/pip,id=pip \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
-
-# 预下载 embedding 模型（使用缓存挂载）
-RUN --mount=type=cache,target=/app/.cache/huggingface,id=huggingface \
+# 安装 Python 依赖
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    # 预下载 embedding 模型以加快启动速度
     python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
 
 # 复制应用代码
