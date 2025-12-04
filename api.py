@@ -5,6 +5,7 @@ import os
 from typing import Optional, List
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse, JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from contextlib import asynccontextmanager
 
@@ -75,6 +76,15 @@ app = FastAPI(
     description="基于 LangGraph 的智能客服机器人 REST API 服务",
     version="1.0.0",
     lifespan=lifespan
+)
+
+# 配置CORS中间件
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 允许所有来源，生产环境建议指定具体域名
+    allow_credentials=True,
+    allow_methods=["*"],  # 允许所有HTTP方法（包括OPTIONS）
+    allow_headers=["*"],  # 允许所有请求头
 )
 
 

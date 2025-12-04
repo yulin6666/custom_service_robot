@@ -13,7 +13,7 @@ ENV PYTHONUNBUFFERED=1 \
     TRANSFORMERS_CACHE=/app/.cache/huggingface \
     HF_HOME=/app/.cache/huggingface \
     # 默认端口
-    PORT=8000
+    PORT=8080
 
 # 安装系统依赖
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -41,12 +41,12 @@ RUN mkdir -p /app/.cache/huggingface
 #     chown -R appuser:appuser /app
 # USER appuser
 
-# 暴露端口（Railway 会使用 PORT 环境变量）
-EXPOSE ${PORT}
+# 暴露端口
+EXPOSE 8080
 
-# 健康检查（Railway 支持）
+# 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:${PORT}/health || exit 1
+    CMD curl -f http://localhost:8080/health || exit 1
 
-# 启动命令 - 使用 shell 形式以支持环境变量
-CMD uvicorn api:app --host 0.0.0.0 --port ${PORT}
+# 启动命令 - 直接使用 8080 端口
+CMD uvicorn api:app --host 0.0.0.0 --port 8080
