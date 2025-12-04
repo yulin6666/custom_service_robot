@@ -24,12 +24,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 
 # 安装 Python 依赖（使用缓存挂载加速下载）
-RUN --mount=type=cache,target=/root/.cache/pip \
+RUN --mount=type=cache,target=/root/.cache/pip,id=pip \
     pip install --upgrade pip && \
     pip install -r requirements.txt
 
 # 预下载 embedding 模型（使用缓存挂载）
-RUN --mount=type=cache,target=/app/.cache/huggingface \
+RUN --mount=type=cache,target=/app/.cache/huggingface,id=huggingface \
     python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
 
 # 复制应用代码
