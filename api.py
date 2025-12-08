@@ -218,6 +218,32 @@ async def get_session(session_id: str):
     }
 
 
+@app.get("/api/v1/knowledge-base")
+async def get_knowledge_base():
+    """
+    获取知识库内容
+
+    Returns:
+        知识库文件的完整内容
+    """
+    from core.config import KNOWLEDGE_BASE_PATH
+
+    if not os.path.exists(KNOWLEDGE_BASE_PATH):
+        raise HTTPException(status_code=404, detail="知识库文件不存在")
+
+    try:
+        with open(KNOWLEDGE_BASE_PATH, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        return {
+            "content": content,
+            "file_path": KNOWLEDGE_BASE_PATH,
+            "message": "知识库获取成功"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"读取知识库失败: {str(e)}")
+
+
 if __name__ == "__main__":
     import uvicorn
     # 支持 Railway 等 PaaS 平台的 PORT 环境变量
