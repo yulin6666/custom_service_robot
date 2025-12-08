@@ -6,8 +6,8 @@ from langchain_core.messages import BaseMessage
 import operator
 
 
-class CustomerServiceState(TypedDict):
-    """客服对话状态"""
+class EnterpriseQueryState(TypedDict):
+    """企业查询对话状态"""
     # 消息历史
     messages: Annotated[Sequence[BaseMessage], operator.add]
 
@@ -16,11 +16,11 @@ class CustomerServiceState(TypedDict):
     user_id: Optional[str]
 
     # 意图识别
-    intent: Optional[str]  # greeting/inquiry/order/complaint/transfer_human/chitchat
+    intent: Optional[str]  # greeting/inquiry/admin/hr/it/legal/finance/procurement/chitchat
     intent_confidence: Optional[float]
 
     # 上下文信息
-    entities: Optional[dict]  # 提取的实体（订单号、产品名等）
+    entities: Optional[dict]  # 提取的实体（部门、员工信息等）
 
     # 知识库检索
     retrieved_docs: Optional[list]
@@ -36,3 +36,7 @@ class CustomerServiceState(TypedDict):
 
     # 流程控制
     next_step: Optional[str]
+
+
+# 兼容性别名
+CustomerServiceState = EnterpriseQueryState

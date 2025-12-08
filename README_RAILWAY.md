@@ -48,7 +48,7 @@ curl -X POST https://your-app.railway.app/api/v1/sessions \
   -d '{"user_id": "test_user"}'
 
 # 发送消息
-curl -X POST https://your-app.railway.app/api/v1/chat \
+curl -X POST customservicerobot-production.up.railway.app/api/v1/chat \
   -H "Content-Type: application/json" \
   -d '{
     "message": "你好",

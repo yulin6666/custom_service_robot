@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from contextlib import asynccontextmanager
 
-from core.main import CustomerServiceBot
+from core.main import EnterpriseQueryBot
 
 
 # 请求模型
@@ -48,7 +48,7 @@ class HealthResponse(BaseModel):
 
 
 # 全局变量，存储机器人实例
-bot: Optional[CustomerServiceBot] = None
+bot: Optional[EnterpriseQueryBot] = None
 
 
 @asynccontextmanager
@@ -56,8 +56,8 @@ async def lifespan(app: FastAPI):
     """应用生命周期管理"""
     # 启动时初始化机器人
     global bot
-    print("正在初始化客服机器人...")
-    bot = CustomerServiceBot()
+    print("正在初始化企业内部查询助手...")
+    bot = EnterpriseQueryBot()
 
     # 生成状态图PNG
     print("正在生成状态图...")
@@ -67,13 +67,13 @@ async def lifespan(app: FastAPI):
     yield
 
     # 关闭时清理资源
-    print("正在关闭客服机器人...")
+    print("正在关闭企业内部查询助手...")
 
 
 # 创建FastAPI应用
 app = FastAPI(
-    title="智能客服机器人 API",
-    description="基于 LangGraph 的智能客服机器人 REST API 服务",
+    title="企业内部查询助手 API",
+    description="基于 LangGraph 的企业内部查询助手 REST API 服务",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -93,7 +93,7 @@ async def root():
     """根路径，返回API信息"""
     return {
         "status": "running",
-        "message": "智能客服机器人 API 服务正在运行"
+        "message": "企业内部查询助手 API 服务正在运行"
     }
 
 
@@ -139,7 +139,7 @@ async def create_session(request: SessionRequest):
 @app.post("/api/v1/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
-    与客服机器人对话
+    企业内部查询
 
     Args:
         request: 聊天请求，包含消息和可选的会话ID

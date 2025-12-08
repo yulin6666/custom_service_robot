@@ -26,8 +26,13 @@ llm = ChatOpenAI(
 )
 
 # ===== Embedding模型配置 =====
+# 使用中文优化的embedding模型（推荐）
+# 选项1: BAAI/bge-base-zh-v1.5 - 中文优化，效果好，速度适中
+# 选项2: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 - 多语言支持
+# 选项3: sentence-transformers/all-mpnet-base-v2 - 英文模型（原始配置，中文效果较差）
+
 embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-mpnet-base-v2",
+    model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",  # 多语言模型，支持中文
     model_kwargs={'device': 'cpu'},
     encode_kwargs={'normalize_embeddings': True}
 )

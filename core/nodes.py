@@ -5,13 +5,13 @@ import json
 from typing import Any
 from langchain_core.messages import HumanMessage, AIMessage
 
-from .models import CustomerServiceState
+from .models import EnterpriseQueryState
 from .config import llm, INTENT_CONFIDENCE_THRESHOLD
 from .knowledge_base import knowledge_base
-from .tools import query_order, process_payment, process_refund, query_logistics
+from .tools import query_employee_info, query_department_info
 
 
-def intent_recognition_node(state: CustomerServiceState) -> dict:
+def intent_recognition_node(state: EnterpriseQueryState) -> dict:
     """
     意图识别节点
     """
@@ -29,27 +29,27 @@ def intent_recognition_node(state: CustomerServiceState) -> dict:
 
 请识别用户意图，从以下类型中选择一个：
 
-【咨询类】- 用户在询问政策、规则、流程、如何操作等
+【咨询类】- 用户在询问政策、规则、流程、如何操作等企业内部信息
 - greeting: 问候、打招呼（你好、在吗）
-- inquiry: 咨询问题（如何退货、什么情况可以退款、退货流程是什么、支持哪些支付方式、多久发货等）
+- admin_inquiry: 行政管理咨询（如何申请办公用品、会议室预订、班车时刻、工牌补办、快递寄送等）
+- hr_inquiry: 人力资源咨询（如何申请年假、工资发放、社保公积金、内部转岗、培训报名、离职流程等）
+- it_inquiry: IT办公咨询（OA密码、软件权限、电脑故障、VPN连接、企业邮箱、Wi-Fi等）
+- legal_inquiry: 法务合规咨询（合同审核、保密协议、知识产权、投诉举报等）
+- finance_inquiry: 财务报销咨询（差旅费报销、日常报销、发票查验、个税、备用金等）
+- procurement_inquiry: 采购管理咨询（采购申请、供应商选择、货物验收、采购纠纷等）
+- general_inquiry: 通用咨询（无法明确分类的企业信息查询）
 - chitchat: 闲聊（天气、笑话等非业务话题）
 
-【操作类】- 用户要执行具体操作，通常会提供订单号或明确说"我要..."
-- order_query: 查询具体订单（我的订单、查询订单ORD001）
-- payment: 要支付订单（帮我支付、支付链接）
-- refund: 要申请退款退货（我要退货、帮我退款、申请退款，通常有订单号）
-- logistics: 查询物流（快递到哪了、物流信息）
-
 【特殊类】
-- complaint: 投诉抱怨（态度差、质量太烂、要投诉）
-- transfer_human: 明确要求转人工（转人工、找客服）
+- transfer_human: 明确要求转人工（转人工、找人工客服、联系HR、联系行政等）
 
-重要：
-- 如果是询问"如何"、"什么情况"、"怎么办"、"流程"、"政策"等，选择 inquiry
-- 如果是要执行操作且提供了订单号等信息，才选择对应的操作类型
+重要提示：
+- 仔细识别问题所属的部门领域（行政、人力、IT、法务、财务、采购）
+- 如果是询问"如何"、"什么情况"、"怎么办"、"流程"、"政策"等，选择对应部门的 inquiry 类型
+- 如果无法明确分类，选择 general_inquiry
 
 返回格式：
-{{"intent": "意图类型", "confidence": 0.95, "entities": {{"订单号": "ORD001"}}}}
+{{"intent": "意图类型", "confidence": 0.95, "entities": {{"部门": "行政部", "关键词": "会议室"}}}}
 
 只返回JSON，不要其他内容。
 """
@@ -57,7 +57,7 @@ def intent_recognition_node(state: CustomerServiceState) -> dict:
     try:
         response = llm.invoke(intent_prompt)
         result = json.loads(response.content)
-        intent = result.get("intent", "inquiry")
+        intent = result.get("intent", "general_inquiry")
         confidence = result.get("confidence", 0.5)
 
         print(f"[节点] 识别意图: {intent} (置信度: {confidence:.2f})")
@@ -71,18 +71,18 @@ def intent_recognition_node(state: CustomerServiceState) -> dict:
     except Exception as e:
         print(f"意图识别失败: {e}")
         return {
-            "intent": "inquiry",
+            "intent": "general_inquiry",
             "intent_confidence": 0.3,
             "entities": {},
             "next_step": "router"
         }
 
 
-def router_node(state: CustomerServiceState) -> str:
+def router_node(state: EnterpriseQueryState) -> str:
     """
     路由分发节点 - 根据意图决定下一步
     """
-    intent = state.get("intent", "inquiry")
+    intent = state.get("intent", "general_inquiry")
     confidence = state.get("intent_confidence", 0.0)
 
     print(f"\n[路由] 进入路由节点")
@@ -94,15 +94,16 @@ def router_node(state: CustomerServiceState) -> str:
         print(f"[路由] 决策: 转人工 (置信度过低或用户请求)")
         return route
 
-    # 根据意图路由
+    # 根据意图路由 - 所有企业查询都走知识库检索
     intent_routes = {
         "greeting": "greeting_handler",
-        "inquiry": "knowledge_retrieval",
-        "order_query": "order_handler",
-        "payment": "payment_handler",
-        "refund": "refund_handler",
-        "logistics": "logistics_handler",
-        "complaint": "complaint_handler",
+        "admin_inquiry": "knowledge_retrieval",
+        "hr_inquiry": "knowledge_retrieval",
+        "it_inquiry": "knowledge_retrieval",
+        "legal_inquiry": "knowledge_retrieval",
+        "finance_inquiry": "knowledge_retrieval",
+        "procurement_inquiry": "knowledge_retrieval",
+        "general_inquiry": "knowledge_retrieval",
         "chitchat": "chitchat_handler"
     }
 
@@ -111,17 +112,19 @@ def router_node(state: CustomerServiceState) -> str:
     return route
 
 
-def greeting_handler_node(state: CustomerServiceState) -> dict:
+def greeting_handler_node(state: EnterpriseQueryState) -> dict:
     """
     问候处理节点
     """
-    greeting_response = """您好！我是智能客服助手，很高兴为您服务！
+    greeting_response = """您好！我是企业内部查询助手，很高兴为您服务！
 
-我可以帮您：
-- 查询订单状态
-- 处理退换货
-- 解答常见问题
-- 查询物流信息
+我可以帮您查询：
+- 📋 行政管理：办公用品、会议室、班车、工牌等
+- 👥 人力资源：年假、工资、社保、培训、离职等
+- 💻 IT办公：OA系统、软件权限、电脑故障、VPN等
+- ⚖️ 法务合规：合同审核、保密协议、知识产权等
+- 💰 财务报销：差旅费、日常报销、发票、备用金等
+- 🛒 采购管理：采购申请、供应商、验收流程等
 
 请问有什么可以帮到您的吗？"""
 
@@ -131,7 +134,7 @@ def greeting_handler_node(state: CustomerServiceState) -> dict:
     }
 
 
-def knowledge_retrieval_node(state: CustomerServiceState) -> dict:
+def knowledge_retrieval_node(state: EnterpriseQueryState) -> dict:
     """
     知识库检索节点（RAG）
     """
@@ -157,7 +160,7 @@ def knowledge_retrieval_node(state: CustomerServiceState) -> dict:
     }
 
 
-def order_handler_node(state: CustomerServiceState) -> dict:
+def order_handler_node(state: EnterpriseQueryState) -> dict:
     """
     订单查询处理节点
     """
@@ -183,7 +186,7 @@ def order_handler_node(state: CustomerServiceState) -> dict:
     }
 
 
-def payment_handler_node(state: CustomerServiceState) -> dict:
+def payment_handler_node(state: EnterpriseQueryState) -> dict:
     """
     支付处理节点
     """
@@ -205,7 +208,7 @@ def payment_handler_node(state: CustomerServiceState) -> dict:
     }
 
 
-def refund_handler_node(state: CustomerServiceState) -> dict:
+def refund_handler_node(state: EnterpriseQueryState) -> dict:
     """
     退款处理节点
     """
@@ -229,7 +232,7 @@ def refund_handler_node(state: CustomerServiceState) -> dict:
     }
 
 
-def logistics_handler_node(state: CustomerServiceState) -> dict:
+def logistics_handler_node(state: EnterpriseQueryState) -> dict:
     """
     物流查询节点
     """
@@ -258,7 +261,7 @@ def logistics_handler_node(state: CustomerServiceState) -> dict:
     }
 
 
-def complaint_handler_node(state: CustomerServiceState) -> dict:
+def complaint_handler_node(state: EnterpriseQueryState) -> dict:
     """
     投诉处理节点
     """
@@ -279,7 +282,7 @@ def complaint_handler_node(state: CustomerServiceState) -> dict:
     }
 
 
-def chitchat_handler_node(state: CustomerServiceState) -> dict:
+def chitchat_handler_node(state: EnterpriseQueryState) -> dict:
     """
     闲聊处理节点
     """
@@ -287,9 +290,9 @@ def chitchat_handler_node(state: CustomerServiceState) -> dict:
     user_message = messages[-1].content
 
     chitchat_prompt = f"""
-你是一个友好的客服助手。用户说：{user_message}
+你是一个友好的企业内部查询助手。用户说：{user_message}
 
-请给出简短友好的回复，然后引导用户提出实际问题。回复要简洁（不超过50字）。
+请给出简短友好的回复，然后引导用户提出企业相关的问题（如行政、人力、IT、法务、财务、采购等）。回复要简洁（不超过50字）。
 """
 
     try:
@@ -305,7 +308,7 @@ def chitchat_handler_node(state: CustomerServiceState) -> dict:
         }
 
 
-def response_generation_node(state: CustomerServiceState) -> dict:
+def response_generation_node(state: EnterpriseQueryState) -> dict:
     """
     响应生成节点
     """
@@ -320,7 +323,7 @@ def response_generation_node(state: CustomerServiceState) -> dict:
 
     if retrieved_docs:
         print(f"[响应生成] 使用RAG检索到的 {len(retrieved_docs)} 个文档作为上下文")
-        context += "参考知识库：\n"
+        context += "参考企业知识库：\n"
         for doc in retrieved_docs:
             context += f"- {doc.page_content}\n"
     else:
@@ -332,9 +335,9 @@ def response_generation_node(state: CustomerServiceState) -> dict:
 
     # 生成响应
     prompt = f"""
-你是一个专业的客服助手，根据以下信息回答用户问题。
+你是一个专业的企业内部查询助手，根据以下信息回答员工的问题。
 
-用户问题：{messages[-1].content}
+员工问题：{messages[-1].content}
 
 {context}
 
@@ -342,8 +345,9 @@ def response_generation_node(state: CustomerServiceState) -> dict:
 - 语气友好专业
 - 回答准确简洁
 - 如果信息充足，直接给出答案
-- 如果信息不足，礼貌地请求补充
-- 不要编造信息
+- 如果信息不足，礼貌地建议员工联系相关部门（行政、人力、IT、法务、财务、采购等）
+- 不要编造信息，严格基于知识库内容回答
+- 如果知识库中有联系方式或流程步骤，请详细列出
 """
 
     try:
@@ -362,12 +366,22 @@ def response_generation_node(state: CustomerServiceState) -> dict:
         }
 
 
-def transfer_to_human_node(state: CustomerServiceState) -> dict:
+def transfer_to_human_node(state: EnterpriseQueryState) -> dict:
     """
     转接人工节点
     """
     return {
         "need_human": True,
-        "final_response": "正在为您转接人工客服，请稍候...\n\n在线客服工作时间：9:00-18:00\n客服热线：400-XXX-XXXX",
+        "final_response": """正在为您转接相关部门，请稍候...
+
+您可以直接联系：
+📋 行政部：分机8888 | admin@company.com
+👥 人力资源部：分机8899 | hr@company.com
+💻 IT部：分机6666 | it@company.com
+⚖️ 法务部：分机7777 | legal@company.com
+💰 财务部：分机8866 | finance@company.com
+🛒 采购部：分机8855 | purchase@company.com
+
+总机：010-XXXX-XXXX（工作时间：9:00-18:00）""",
         "next_step": "end"
     }

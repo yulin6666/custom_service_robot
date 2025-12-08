@@ -22,6 +22,12 @@ class KnowledgeBase:
     def load_knowledge_base(self, file_path: str = KNOWLEDGE_BASE_PATH):
         """加载知识库文件"""
         try:
+            # 清空旧的向量存储数据（重要！避免旧数据干扰）
+            # 由于InMemoryVectorStore没有clear方法，我们需要重新创建实例
+            from .config import embeddings
+            from langchain_core.vectorstores import InMemoryVectorStore
+            self.vector_store = InMemoryVectorStore(embeddings)
+
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
 
@@ -38,11 +44,12 @@ class KnowledgeBase:
             self.vector_store.add_documents(documents)
             self.initialized = True
 
-            print(f"成功加载知识库，共 {len(documents)} 个文档块")
+            print(f"✅ 成功加载知识库，共 {len(documents)} 个文档块")
+            print(f"📄 知识库文件: {file_path}")
             return True
 
         except Exception as e:
-            print(f"加载知识库失败: {e}")
+            print(f"❌ 加载知识库失败: {e}")
             return False
 
     def search(self, query: str, k: int = TOP_K_RESULTS) -> List[Document]:

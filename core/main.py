@@ -1,22 +1,22 @@
 """
-客服机器人主入口
+企业内部查询助手主入口
 """
 import uuid
 from typing import Dict, Any
 from langchain_core.messages import HumanMessage
 
-from .graph import create_customer_service_graph
+from .graph import create_enterprise_query_graph
 from .knowledge_base import knowledge_base
-from .models import CustomerServiceState
+from .models import EnterpriseQueryState
 from .log_collector import LogCollector
 
 
-class CustomerServiceBot:
-    """客服机器人类"""
+class EnterpriseQueryBot:
+    """企业内部查询助手类"""
 
     def __init__(self):
-        """初始化机器人"""
-        print("正在初始化客服机器人...")
+        """初始化查询助手"""
+        print("正在初始化企业内部查询助手...")
 
         # 加载知识库
         print("正在加载知识库...")
@@ -24,12 +24,12 @@ class CustomerServiceBot:
 
         # 创建状态图
         print("正在创建状态图...")
-        self.graph = create_customer_service_graph()
+        self.graph = create_enterprise_query_graph()
 
         # 会话历史
         self.sessions = {}
 
-        print("客服机器人初始化完成！\n")
+        print("企业内部查询助手初始化完成！\n")
 
     def save_graph_to_png(self, output_path: str = "customer_service_graph.png"):
         """
@@ -99,7 +99,7 @@ class CustomerServiceBot:
             session["messages"].append(user_message)
 
             # 构建初始状态
-            initial_state: CustomerServiceState = {
+            initial_state: EnterpriseQueryState = {
                 "messages": [user_message],
                 "session_id": session_id,
                 "user_id": user_id,
@@ -156,7 +156,7 @@ class CustomerServiceBot:
     def run_interactive(self):
         """运行交互式命令行界面"""
         print("=" * 60)
-        print("欢迎使用智能客服机器人！")
+        print("欢迎使用企业内部查询助手！")
         print("=" * 60)
         print("提示：")
         print("- 输入您的问题开始对话")
@@ -195,7 +195,7 @@ class CustomerServiceBot:
                     session_id = list(self.sessions.keys())[-1]
 
                 # 打印响应
-                print(f"\n客服: {response}\n")
+                print(f"\n助手: {response}\n")
                 print("-" * 60)
 
             except KeyboardInterrupt:
@@ -207,7 +207,7 @@ class CustomerServiceBot:
 
 def main():
     """主函数"""
-    bot = CustomerServiceBot()
+    bot = EnterpriseQueryBot()
 
     # 保存状态图到PNG
     bot.save_graph_to_png("customer_service_graph.png")
