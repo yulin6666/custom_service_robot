@@ -1,5 +1,5 @@
 """
-状态定义
+State definitions
 """
 from typing import TypedDict, Annotated, Sequence, Optional
 from langchain_core.messages import BaseMessage
@@ -7,36 +7,36 @@ import operator
 
 
 class EnterpriseQueryState(TypedDict):
-    """企业查询对话状态"""
-    # 消息历史
+    """Enterprise query conversation state"""
+    # Message history
     messages: Annotated[Sequence[BaseMessage], operator.add]
 
-    # 会话信息
+    # Session information
     session_id: str
     user_id: Optional[str]
 
-    # 意图识别
+    # Intent recognition
     intent: Optional[str]  # greeting/inquiry/admin/hr/it/legal/finance/procurement/chitchat
     intent_confidence: Optional[float]
 
-    # 上下文信息
-    entities: Optional[dict]  # 提取的实体（部门、员工信息等）
+    # Context information
+    entities: Optional[dict]  # Extracted entities (departments, employee info, etc.)
 
-    # 知识库检索
+    # Knowledge base retrieval
     retrieved_docs: Optional[list]
 
-    # 工具调用
+    # Tool calls
     tool_results: Optional[dict]
 
-    # 人工转接
+    # Human transfer
     need_human: bool
 
-    # 响应生成
+    # Response generation
     final_response: Optional[str]
 
-    # 流程控制
+    # Flow control
     next_step: Optional[str]
 
 
-# 兼容性别名
+# Compatibility alias
 CustomerServiceState = EnterpriseQueryState

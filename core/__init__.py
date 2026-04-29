@@ -1,9 +1,9 @@
 """
-企业内部查询助手核心模块
+Internal enterprise query assistant core module
 """
 from .main import EnterpriseQueryBot
 
-# 为了向后兼容，保留旧名称的别名
+# For backward compatibility, keep the old name as an alias
 CustomerServiceBot = EnterpriseQueryBot
 
 __version__ = "1.0.0"

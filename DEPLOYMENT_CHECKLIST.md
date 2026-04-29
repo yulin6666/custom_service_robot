@@ -1,139 +1,139 @@
-# Railway 部署检查清单
+# Railway Deployment checklist
 
-在部署到 Railway 之前，请确保完成以下检查：
+After deploying to Railway Before doing so, make sure you complete the following checks:
 
-## ✅ 代码准备
+## ✅ Code preparation
 
-- [ ] 所有代码已提交到 Git 仓库
-- [ ] `.gitignore` 已配置，不包含敏感信息
-- [ ] `customer_service_kb.txt` 知识库文件存在
-- [ ] 所有 Python 依赖已在 `requirements.txt` 中声明
+- [ ] All code has been submitted to Git storehouse
+- [ ] `.gitignore` Configured, does not contain sensitive information
+- [ ] `customer_service_kb.txt` Knowledge base file exists
+- [ ] all Python The dependency is already there `requirements.txt` Statement in
 
-## ✅ 配置文件
+## ✅ Configuration file
 
-- [ ] `Dockerfile` 存在且可用
-- [ ] `railway.json` 配置正确
-- [ ] `.dockerignore` 已创建
-- [ ] `.env.example` 提供了环境变量模板
+- [ ] `Dockerfile` exists and is available
+- [ ] `railway.json` Configured correctly
+- [ ] `.dockerignore` Created
+- [ ] `.env.example` Provides environment variable templates
 
-## ✅ API 密钥准备
+## ✅ API Key preparation
 
-- [ ] 已获取 OpenAI 兼容的 API Key（如 DeepSeek）
-- [ ] API Key 有足够的余额
-- [ ] 已记录 API Base URL
+- [ ] Obtained OpenAI compatible API Key（like DeepSeek）
+- [ ] API Key Have enough balance
+- [ ] Recorded API Base URL
 
-## ✅ 本地测试
+## ✅ local test
 
-- [ ] 本地 Docker 构建成功
+- [ ] local Docker Build successful
   ```bash
   docker build -t customer-service-bot .
   ```
 
-- [ ] 本地 Docker 运行正常
+- [ ] local Docker Running normally
   ```bash
   docker run -p 8000:8000 -e OPENAI_API_KEY=your-key customer-service-bot
   ```
 
-- [ ] 健康检查通过
+- [ ] Health check passed
   ```bash
   curl http://localhost:8000/health
   ```
 
-- [ ] API 测试通过
+- [ ] API Test passed
   ```bash
   python test_api.py
   ```
 
-## ✅ Railway 账号
+## ✅ Railway account
 
-- [ ] 已注册 Railway 账号
-- [ ] 已连接 GitHub 账号（如果从 GitHub 部署）
-- [ ] 了解 Railway 的定价和免费额度
+- [ ] Registered Railway account
+- [ ] Connected GitHub Account number (if from GitHub deploy)
+- [ ] learn Railway Pricing and free credits
 
-## ✅ 部署配置
+## ✅ Deployment configuration
 
-- [ ] 已准备好要部署的 Git 分支（通常是 `main`）
-- [ ] 已确认项目不包含大文件（< 500MB）
-- [ ] 已规划好环境变量配置
+- [ ] ready for deployment Git branch (usually `main`）
+- [ ] Confirmed project does not contain large files (< 500MB）
+- [ ] Environment variable configuration has been planned
 
-## ✅ 环境变量清单
+## ✅ Environment variable list
 
-必需设置：
+Required settings:
 ```bash
 OPENAI_API_KEY=sk-xxx
 OPENAI_BASE_URL=https://api.deepseek.com/v1
 LLM_MODEL=deepseek-chat
 ```
 
-可选设置：
+Optional settings:
 ```bash
 TOP_K_RESULTS=3
 INTENT_CONFIDENCE_THRESHOLD=0.6
 ```
 
-## ✅ 部署后验证
+## ✅ Post-deployment verification
 
-- [ ] 服务启动成功（查看 Railway 日志）
-- [ ] 健康检查端点可访问
+- [ ] The service started successfully (see Railway log)
+- [ ] The health check endpoint is accessible
   ```bash
   curl https://your-app.railway.app/health
   ```
 
-- [ ] API 文档可访问
+- [ ] API Documentation is accessible
   ```
   https://your-app.railway.app/docs
   ```
 
-- [ ] 创建会话成功
+- [ ] Session created successfully
   ```bash
   curl -X POST https://your-app.railway.app/api/v1/sessions \
     -H "Content-Type: application/json" \
     -d '{"user_id": "test"}'
   ```
 
-- [ ] 对话功能正常
+- [ ] Conversations function normally
   ```bash
   curl -X POST https://your-app.railway.app/api/v1/chat \
     -H "Content-Type: application/json" \
-    -d '{"message": "你好"}'
+    -d '{"message": "Hello"}'
   ```
 
-- [ ] 状态图可访问
+- [ ] The state diagram is accessible
   ```
   https://your-app.railway.app/api/v1/graph
   ```
 
-## ✅ 监控和维护
+## ✅ Monitor and maintain
 
-- [ ] 设置 Railway 的构建通知
-- [ ] 定期查看日志和错误
-- [ ] 监控 API 使用量和成本
-- [ ] 备份重要配置和数据
+- [ ] set up Railway build notification
+- [ ] Check logs and errors regularly
+- [ ] monitor API Usage and cost
+- [ ] Back up important configurations and data
 
-## ✅ 安全检查
+## ✅ security check
 
-- [ ] API Key 只通过环境变量配置，未硬编码
-- [ ] `.env` 文件已添加到 `.gitignore`
-- [ ] 考虑为 API 添加认证（如果需要）
-- [ ] 定期更换 API Key
+- [ ] API Key Only configured through environment variables, not hard-coded
+- [ ] `.env` File added to `.gitignore`
+- [ ] Consider as API Add certification (if needed)
+- [ ] Regular replacement API Key
 
-## ✅ 文档
+## ✅ document
 
-- [ ] `README_RAILWAY.md` 已更新
-- [ ] `RAILWAY_DEPLOY.md` 提供了详细步骤
-- [ ] `API_README.md` 提供了 API 使用说明
+- [ ] `README_RAILWAY.md` updated
+- [ ] `RAILWAY_DEPLOY.md` Detailed steps provided
+- [ ] `API_README.md` provided API Instructions for use
 
-## 🚀 准备部署！
+## 🚀 Ready to deploy!
 
-当所有检查项都完成后，你就可以开始部署了：
+When all checks are completed, you can start deployment:
 
-### 方式一：通过 GitHub
-1. 推送代码到 GitHub
-2. 在 Railway 选择仓库部署
-3. 配置环境变量
-4. 等待构建完成
+### Method 1: Pass GitHub
+1. push code to GitHub
+2. exist Railway Select warehouse deployment
+3. Configure environment variables
+4. Wait for the build to complete
 
-### 方式二：使用 CLI
+### Method 2: Use CLI
 ```bash
 railway login
 railway init
@@ -142,13 +142,13 @@ railway up
 
 ---
 
-## 🆘 遇到问题？
+## 🆘 Having a problem?
 
-- 查看 [RAILWAY_DEPLOY.md](./RAILWAY_DEPLOY.md) 中的"常见问题"章节
-- 检查 Railway 日志查找错误信息
-- 在 GitHub Issues 提问
-- 访问 Railway Discord 社区
+- Check [RAILWAY_DEPLOY.md](./RAILWAY_DEPLOY.md) in"FAQ"chapter
+- examine Railway Log search error message
+- exist GitHub Issues Ask a question
+- access Railway Discord Community
 
 ---
 
-**祝部署顺利！** 🎉
+**Good luck with the deployment!** 🎉

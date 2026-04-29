@@ -9,10 +9,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      # 可以通过环境变量配置
+      # Can be configured via environment variables
       - PYTHONUNBUFFERED=1
     volumes:
-      # 挂载知识库文件（如果需要动态更新）
+      # Mount knowledge base file (if dynamic updates are needed)
       - ./customer_service_kb.txt:/app/customer_service_kb.txt:ro
     restart: unless-stopped
     healthcheck:

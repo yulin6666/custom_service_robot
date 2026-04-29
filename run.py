@@ -1,5 +1,5 @@
 """
-运行脚本 - 启动客服机器人
+Run script - Start the customer service bot
 """
 from core.main import main
 

@@ -1,433 +1,433 @@
-# 企业内部查询助手 - LangGraph版本
+# Enterprise Internal Query Assistant - LangGraph Version
 
-基于LangGraph构建的企业内部查询助手，帮助员工快速查询行政、人力资源、IT办公、法务、财务、采购等企业内部信息。支持智能意图识别、知识库检索（RAG）、多轮对话等核心功能。
+A LangGraph-based enterprise internal query assistant that helps employees quickly look up information on administration, human resources, IT, legal, finance, procurement, and other internal enterprise topics. Supports intelligent intent recognition, knowledge base retrieval (RAG), multi-turn conversations, and other core features.
 
-**✨ 现已支持 REST API 和 Web 界面！**
+**Now supports REST API and Web interface!**
 
-## 功能特性
+## Features
 
-- 🤖 智能意图识别（自动识别行政、人力、IT、法务、财务、采购等查询类型）
-- 📚 知识库检索（RAG）- 基于向量搜索的企业知识库
-- 💼 六大模块支持：
-  - 📋 行政管理（办公用品、会议室、班车、工牌等）
-  - 👥 人力资源（年假、工资、社保、培训、离职等）
-  - 💻 IT办公（OA系统、软件权限、电脑故障、VPN等）
-  - ⚖️ 法务合规（合同审核、保密协议、知识产权等）
-  - 💰 财务报销（差旅费、日常报销、发票、备用金等）
-  - 🛒 采购管理（采购申请、供应商、验收流程等）
-- 💬 多轮对话管理（会话上下文保持）
-- 🔄 状态机流程控制（LangGraph）
-- 🌐 REST API 接口（FastAPI）
-- 🎨 Web 前端界面（Next.js + React）
-- 📊 完整执行日志输出（可视化 LangGraph 流程）
-- 🐳 Docker 容器化部署
+- Smart intent recognition (automatically identifies query types: administration, HR, IT, legal, finance, procurement, etc.)
+- Knowledge base retrieval (RAG) - vector search-based enterprise knowledge base
+- Six module support:
+  - Administration (office supplies, meeting rooms, shuttle bus, badges, etc.)
+  - Human Resources (annual leave, salary, social insurance, training, resignation, etc.)
+  - IT Office (OA system, software permissions, computer issues, VPN, etc.)
+  - Legal Compliance (contract review, NDAs, intellectual property, etc.)
+  - Finance & Reimbursement (travel expenses, daily reimbursement, invoices, petty cash, etc.)
+  - Procurement Management (purchase requests, suppliers, acceptance process, etc.)
+- Multi-turn conversation management (session context retention)
+- State machine workflow control (LangGraph)
+- REST API interface (FastAPI)
+- Web frontend interface (Next.js + React)
+- Complete execution log output (visualized LangGraph workflow)
+- Docker containerized deployment
 
-## 项目结构
+## Project Structure
 
 ```
 service_robot/
-├── custom_service_robot/          # 后端服务
-│   ├── core/                      # 核心模块
-│   │   ├── config.py             # 配置（LLM、embeddings、vector store）
-│   │   ├── models.py             # 状态定义
-│   │   ├── knowledge_base.py     # 知识库RAG系统
-│   │   ├── tools.py              # 工具函数（员工信息、部门信息查询）
-│   │   ├── nodes.py              # LangGraph节点定义
-│   │   ├── graph.py              # LangGraph状态图
-│   │   └── main.py               # 主入口
-│   ├── customer_service_kb.txt   # 企业知识库文件
-│   ├── api.py                    # REST API服务
-│   ├── requirements.txt          # Python依赖
-│   └── run.py                    # 命令行启动脚本
+├── custom_service_robot/          # Backend service
+│   ├── core/                      # Core modules
+│   │   ├── config.py             # Configuration (LLM, embeddings, vector store)
+│   │   ├── models.py             # State definitions
+│   │   ├── knowledge_base.py     # Knowledge base RAG system
+│   │   ├── tools.py              # Tool functions (employee info, department info queries)
+│   │   ├── nodes.py              # LangGraph node definitions
+│   │   ├── graph.py              # LangGraph state graph
+│   │   └── main.py               # Main entry point
+│   ├── customer_service_kb.txt   # Enterprise knowledge base file
+│   ├── api.py                    # REST API service
+│   ├── requirements.txt          # Python dependencies
+│   └── run.py                    # Command-line startup script
 │
-└── custom_service_robot_web/      # 前端界面
-    ├── app/                       # Next.js应用
-    │   ├── components/            # React组件
-    │   │   └── ChatInterface.js  # 聊天界面组件
-    │   ├── layout.js             # 布局
-    │   └── page.js               # 首页
-    ├── package.json              # Node.js依赖
-    └── next.config.js            # Next.js配置
+└── custom_service_robot_web/      # Frontend interface
+    ├── app/                       # Next.js application
+    │   ├── components/            # React components
+    │   │   └── ChatInterface.js  # Chat interface component
+    │   ├── layout.js             # Layout
+    │   └── page.js               # Home page
+    ├── package.json              # Node.js dependencies
+    └── next.config.js            # Next.js configuration
 ```
 
-## 快速开始
+## Quick Start
 
-### 前置要求
+### Prerequisites
 
 - Python 3.10+
-- Node.js 18+（仅前端需要）
-- DeepSeek API Key（或其他OpenAI兼容的LLM API）
+- Node.js 18+ (frontend only)
+- DeepSeek API Key (or other OpenAI-compatible LLM API)
 
-### 方式一：使用 Web 界面（推荐）
+### Option 1: Using the Web Interface (Recommended)
 
-#### 1. 启动后端服务
+#### 1. Start the backend service
 
 ```bash
 cd custom_service_robot
 
-# 安装Python依赖
+# Install Python dependencies
 pip install -r requirements.txt
 
-# 配置API密钥（编辑 core/config.py）
-# 将 openai_api_key 改为你的实际API密钥
+# Configure API key (edit core/config.py)
+# Change openai_api_key to your actual API key
 
-# 启动API服务
+# Start API service
 python api.py
-# 服务将在 http://localhost:8000 启动
+# Service will start at http://localhost:8000
 ```
 
-#### 2. 启动前端界面
+#### 2. Start the frontend interface
 
 ```bash
 cd custom_service_robot_web
 
-# 安装Node.js依赖
+# Install Node.js dependencies
 npm install
 
-# 配置后端API地址（如果需要）
-# 创建 .env.local 文件：
+# Configure backend API address (if needed)
+# Create .env.local file:
 # NEXT_PUBLIC_API_URL=http://localhost:8000
 
-# 启动开发服务器
+# Start development server
 npm run dev
-# 前端将在 http://localhost:3000 启动
+# Frontend will start at http://localhost:3000
 ```
 
-#### 3. 访问系统
+#### 3. Access the system
 
-打开浏览器访问 `http://localhost:3000`，即可使用企业内部查询助手！
+Open your browser and visit `http://localhost:3000` to use the enterprise internal query assistant!
 
-### 方式二：命令行交互
+### Option 2: Command-line interaction
 
 ```bash
 cd custom_service_robot
 
-# 安装依赖
+# Install dependencies
 pip install -r requirements.txt
 
-# 运行机器人
+# Run the bot
 python run.py
 ```
 
-示例对话：
+Example conversation:
 ```
-您: 你好
-助手: 您好！我是企业内部查询助手，很高兴为您服务！
+You: Hello
+Assistant: Hello! I am the enterprise internal query assistant, happy to help you!
 
-我可以帮您查询：
-- 📋 行政管理：办公用品、会议室、班车、工牌等
-- 👥 人力资源：年假、工资、社保、培训、离职等
-- 💻 IT办公：OA系统、软件权限、电脑故障、VPN等
+I can help you look up:
+- Administration: office supplies, meeting rooms, shuttle bus, badges, etc.
+- Human Resources: annual leave, salary, social insurance, training, resignation, etc.
+- IT Office: OA system, software permissions, computer issues, VPN, etc.
 ...
 
-您: 如何申请年假？
-助手: [返回年假申请流程详情]
+You: How do I apply for annual leave?
+Assistant: [Returns annual leave application process details]
 
-您: exit  # 退出
+You: exit  # Exit
 ```
 
-### 方式三：直接调用 API
+### Option 3: Direct API calls
 
 ```bash
-# 测试API
+# Test API
 python test_api.py
 
-# 或使用curl
+# Or use curl
 curl -X POST "http://localhost:8000/api/v1/chat" \
   -H "Content-Type: application/json" \
-  -d '{"message": "如何申请年假？"}'
+  -d '{"message": "How do I apply for annual leave?"}'
 ```
 
-访问 API 文档：`http://localhost:8000/docs`
+Visit API documentation: `http://localhost:8000/docs`
 
-## 核心配置
+## Core Configuration
 
-### 1. 配置 LLM API（必需）
+### 1. Configure LLM API (Required)
 
-编辑 `core/config.py`，设置你的 API 密钥：
+Edit `core/config.py` and set your API key:
 
 ```python
 llm = ChatOpenAI(
     model="deepseek-chat",
     temperature=0,
-    openai_api_key="sk-your-api-key-here",  # 改为你的API密钥
+    openai_api_key="sk-your-api-key-here",  # Change to your API key
     base_url="https://api.deepseek.com/v1"
 )
 ```
 
-支持的LLM：
-- DeepSeek（推荐，性价比高）
+Supported LLMs:
+- DeepSeek (recommended, cost-effective)
 - OpenAI GPT-4
-- 其他OpenAI兼容API
+- Other OpenAI-compatible APIs
 
-### 2. 更新企业知识库
+### 2. Update the enterprise knowledge base
 
-编辑 `customer_service_kb.txt` 文件，根据你的企业实际情况修改：
+Edit the `customer_service_kb.txt` file according to your company's actual situation:
 
 ```
-企业内部查询知识库 - 员工常见问题解答
+Enterprise Internal Query Knowledge Base - Employee FAQ
 
 ===================
-一、行政管理
+I. Administration
 ===================
 
-问：如何申请办公用品？
-答：办公用品申请流程如下...
+Q: How to apply for office supplies?
+A: Office supply application process is as follows...
 
-问：会议室如何预订？
-答：会议室预订有两种方式...
+Q: How to book a meeting room?
+A: There are two ways to book a meeting room...
 ```
 
-知识库支持的领域：
-- 行政管理（办公用品、会议室、班车、快递等）
-- 人力资源（年假、工资、社保、培训、离职等）
-- IT办公（OA密码、软件权限、电脑故障、VPN等）
-- 法务合规（合同审核、保密协议、知识产权等）
-- 财务报销（差旅费、日常报销、发票、备用金等）
-- 采购管理（采购申请、供应商、验收流程等）
+Knowledge base supported domains:
+- Administration (office supplies, meeting rooms, shuttle bus, courier, etc.)
+- Human Resources (annual leave, salary, social insurance, training, resignation, etc.)
+- IT Office (OA password, software permissions, computer issues, VPN, etc.)
+- Legal Compliance (contract review, NDAs, intellectual property, etc.)
+- Finance & Reimbursement (travel expenses, daily reimbursement, invoices, petty cash, etc.)
+- Procurement Management (purchase requests, suppliers, acceptance process, etc.)
 
-### 3. 调整检索参数（可选）
+### 3. Adjust retrieval parameters (Optional)
 
-在 `core/config.py` 中：
+In `core/config.py`:
 
 ```python
-TOP_K_RESULTS = 3  # RAG检索返回结果数
-INTENT_CONFIDENCE_THRESHOLD = 0.6  # 意图识别置信度阈值
+TOP_K_RESULTS = 3  # Number of RAG retrieval results
+INTENT_CONFIDENCE_THRESHOLD = 0.6  # Intent recognition confidence threshold
 ```
 
-## 系统架构
+## System Architecture
 
-### LangGraph 工作流程
+### LangGraph Workflow
 
 ```
-员工提问
+Employee question
    ↓
-意图识别（识别查询类型：行政/人力/IT/法务/财务/采购）
+Intent recognition (identify query type: admin/HR/IT/legal/finance/procurement)
    ↓
-路由分发
-   ├→ 问候 → 返回欢迎语
-   ├→ 企业查询 → 知识库检索(RAG) → 响应生成 → 返回答案
-   ├→ 闲聊 → 友好回复
-   └→ 转人工 → 返回部门联系方式
+Route dispatch
+   ├→ Greeting → Return welcome message
+   ├→ Enterprise query → Knowledge base retrieval (RAG) → Response generation → Return answer
+   ├→ Chitchat → Friendly reply
+   └→ Transfer to human → Return department contact info
 ```
 
-### 支持的意图类型
+### Supported Intent Types
 
-| 意图类型 | 说明 | 示例问题 |
+| Intent Type | Description | Example Questions |
 |---------|------|---------|
-| `greeting` | 问候打招呼 | 你好、在吗 |
-| `admin_inquiry` | 行政管理咨询 | 如何预订会议室？班车时刻表？ |
-| `hr_inquiry` | 人力资源咨询 | 如何申请年假？工资什么时候发？ |
-| `it_inquiry` | IT办公咨询 | 忘记OA密码怎么办？如何连接VPN？ |
-| `legal_inquiry` | 法务合规咨询 | 如何申请合同审核？保密协议内容？ |
-| `finance_inquiry` | 财务报销咨询 | 如何报销差旅费？发票如何查验？ |
-| `procurement_inquiry` | 采购管理咨询 | 如何发起采购申请？验收流程？ |
-| `general_inquiry` | 通用查询 | 无法明确分类的企业信息查询 |
-| `chitchat` | 闲聊 | 天气、笑话等非业务话题 |
-| `transfer_human` | 转人工 | 转人工、联系HR、联系行政 |
+| `greeting` | Greeting | Hello, are you there |
+| `admin_inquiry` | Administration inquiry | How to book a meeting room? Shuttle bus schedule? |
+| `hr_inquiry` | HR inquiry | How to apply for annual leave? When is payday? |
+| `it_inquiry` | IT inquiry | Forgot OA password? How to connect VPN? |
+| `legal_inquiry` | Legal compliance inquiry | How to apply for contract review? NDA content? |
+| `finance_inquiry` | Finance reimbursement inquiry | How to reimburse travel expenses? How to verify invoices? |
+| `procurement_inquiry` | Procurement inquiry | How to initiate a purchase request? Acceptance process? |
+| `general_inquiry` | General query | Enterprise information queries that cannot be clearly categorized |
+| `chitchat` | Chitchat | Weather, jokes, and other non-business topics |
+| `transfer_human` | Transfer to human | Transfer to human, contact HR, contact admin |
 
-### 工具函数
+### Tool Functions
 
-系统提供以下工具函数（可扩展）：
+The system provides the following tool functions (extensible):
 
-- `query_employee_info(employee_id, name)` - 查询员工信息
-- `query_department_info(department_name)` - 查询部门信息
+- `query_employee_info(employee_id, name)` - Query employee information
+- `query_department_info(department_name)` - Query department information
 
-可根据需要在 `core/tools.py` 中添加更多工具。
+You can add more tools in `core/tools.py` as needed.
 
-## REST API 端点
+## REST API Endpoints
 
-| 方法 | 端点 | 说明 |
+| Method | Endpoint | Description |
 |-----|------|-----|
-| GET | `/` | API状态检查 |
-| GET | `/health` | 健康检查 |
-| POST | `/api/v1/sessions` | 创建新会话 |
-| POST | `/api/v1/chat` | 发送消息并获取回复（含执行日志） |
-| GET | `/api/v1/graph` | 获取状态图PNG |
-| GET | `/api/v1/sessions/{session_id}` | 查询会话信息 |
-| GET | `/docs` | Swagger API文档 |
+| GET | `/` | API status check |
+| GET | `/health` | Health check |
+| POST | `/api/v1/sessions` | Create new session |
+| POST | `/api/v1/chat` | Send message and get reply (with execution logs) |
+| GET | `/api/v1/graph` | Get state graph PNG |
+| GET | `/api/v1/sessions/{session_id}` | Query session information |
+| GET | `/docs` | Swagger API documentation |
 
-### API 请求示例
+### API Request Examples
 
-**创建会话：**
+**Create session:**
 ```bash
 curl -X POST "http://localhost:8000/api/v1/sessions" \
   -H "Content-Type: application/json" \
   -d '{"user_id": "employee_001"}'
 ```
 
-**发送消息：**
+**Send message:**
 ```bash
 curl -X POST "http://localhost:8000/api/v1/chat" \
   -H "Content-Type: application/json" \
   -d '{
-    "message": "如何申请年假？",
+    "message": "How do I apply for annual leave?",
     "session_id": "your-session-id"
   }'
 ```
 
-**响应示例：**
+**Response example:**
 ```json
 {
-  "response": "年假申请流程：\n1. 登录OA系统'请假管理'模块\n2. 选择'年假'类型...",
+  "response": "Annual leave application process:\n1. Log in to OA system 'Leave Management' module\n2. Select 'Annual Leave' type...",
   "logs": [
-    "[节点] 进入意图识别节点",
-    "[节点] 识别意图: hr_inquiry (置信度: 0.95)",
-    "[路由] 路由到 knowledge_retrieval",
-    "[RAG检索] 找到 3 个相关文档",
-    "[响应生成] 响应生成成功"
+    "[Node] Entering intent recognition node",
+    "[Node] Recognized intent: hr_inquiry (confidence: 0.95)",
+    "[Router] Routing to knowledge_retrieval",
+    "[RAG Retrieval] Found 3 relevant documents",
+    "[Response Generation] Response generated successfully"
   ],
   "session_id": "uuid-xxx",
   "status": "success"
 }
 ```
 
-## 作为模块使用
+## Using as a Module
 
 ```python
 from core.main import EnterpriseQueryBot
 
-# 创建助手实例
+# Create assistant instance
 bot = EnterpriseQueryBot()
 
-# 单次查询
-response = bot.chat("如何申请年假？")
+# Single query
+response = bot.chat("How do I apply for annual leave?")
 print(response)
 
-# 持续对话（保持会话上下文）
+# Continuous conversation (maintain session context)
 session_id = bot.create_session(user_id="employee_001")
-response1 = bot.chat("如何申请年假？", session_id)
-response2 = bot.chat("需要提前几天申请？", session_id)  # 上下文关联
+response1 = bot.chat("How do I apply for annual leave?", session_id)
+response2 = bot.chat("How many days in advance do I need to apply?", session_id)  # Context linked
 
-# 获取执行日志
-result = bot.chat("如何预订会议室？", capture_logs=True)
+# Get execution logs
+result = bot.chat("How do I book a meeting room?", capture_logs=True)
 print(result["response"])
 print(result["logs"])
 ```
 
-## Docker 部署
+## Docker Deployment
 
-### 后端服务
+### Backend service
 
 ```bash
 cd custom_service_robot
 
-# 构建镜像
+# Build image
 docker build -t enterprise-query-bot .
 
-# 运行容器
+# Run container
 docker run -p 8000:8000 enterprise-query-bot
 ```
 
-### 使用 Docker Compose（推荐）
+### Using Docker Compose (Recommended)
 
 ```bash
-# 在项目根目录
+# In project root directory
 docker-compose up -d
 
-# 查看日志
+# View logs
 docker-compose logs -f
 
-# 停止服务
+# Stop service
 docker-compose down
 ```
 
-访问：
-- 前端界面：http://localhost:3000
-- 后端API：http://localhost:8000
-- API文档：http://localhost:8000/docs
+Access:
+- Frontend interface: http://localhost:3000
+- Backend API: http://localhost:8000
+- API documentation: http://localhost:8000/docs
 
-## 常见问题
+## FAQ
 
-### 1. 如何修改知识库内容？
+### 1. How to modify knowledge base content?
 
-编辑 `customer_service_kb.txt` 文件，重启服务即可生效。知识库采用问答格式，系统会自动进行向量化和检索。
+Edit the `customer_service_kb.txt` file and restart the service for changes to take effect. The knowledge base uses a Q&A format, and the system will automatically vectorize and retrieve it.
 
-### 2. 如何接入企业内部数据库？
+### 2. How to connect to an internal enterprise database?
 
-在 `core/tools.py` 中修改工具函数，将模拟数据替换为真实数据库查询：
+Modify the tool functions in `core/tools.py`, replacing simulated data with real database queries:
 
 ```python
 def query_employee_info(employee_id: str):
-    # 替换为实际数据库查询
+    # Replace with actual database query
     from your_db import get_employee
     return get_employee(employee_id)
 ```
 
-### 3. 如何提高回答准确性？
+### 3. How to improve answer accuracy?
 
-- 完善知识库内容（`customer_service_kb.txt`）
-- 调整 RAG 检索参数（`TOP_K_RESULTS`）
-- 使用更强大的 LLM 模型
-- 优化意图识别提示词（`nodes.py` 中的 `intent_prompt`）
+- Improve knowledge base content (`customer_service_kb.txt`)
+- Adjust RAG retrieval parameters (`TOP_K_RESULTS`)
+- Use a more powerful LLM model
+- Optimize intent recognition prompts (`intent_prompt` in `nodes.py`)
 
-### 4. 如何添加新的查询类型？
+### 4. How to add new query types?
 
-1. 在 `customer_service_kb.txt` 添加相关知识
-2. 在 `nodes.py` 的意图识别中添加新意图类型
-3. 在 `router_node` 中添加路由规则
+1. Add relevant knowledge to `customer_service_kb.txt`
+2. Add new intent types to intent recognition in `nodes.py`
+3. Add routing rules in `router_node`
 
-### 5. 前端界面显示连接失败？
+### 5. Frontend interface shows connection failure?
 
-检查：
-- 后端服务是否正常运行（http://localhost:8000/health）
-- 前端环境变量配置是否正确（`NEXT_PUBLIC_API_URL`）
-- CORS 配置是否允许前端域名
+Check:
+- Is the backend service running normally (http://localhost:8000/health)
+- Is the frontend environment variable configured correctly (`NEXT_PUBLIC_API_URL`)
+- Does the CORS configuration allow the frontend domain
 
-## 技术栈
+## Tech Stack
 
-**后端：**
-- **LangGraph**: 状态机和工作流管理
-- **LangChain**: LLM交互和RAG框架
-- **FastAPI**: REST API框架
-- **DeepSeek**: LLM服务
-- **HuggingFace**: Embedding模型（sentence-transformers）
+**Backend:**
+- **LangGraph**: State machine and workflow management
+- **LangChain**: LLM interaction and RAG framework
+- **FastAPI**: REST API framework
+- **DeepSeek**: LLM service
+- **HuggingFace**: Embedding model (sentence-transformers)
 - **Python 3.10+**
 
-**前端：**
-- **Next.js 14**: React框架
-- **React 18**: UI组件库
-- **Tailwind CSS**: 样式框架
+**Frontend:**
+- **Next.js 14**: React framework
+- **React 18**: UI component library
+- **Tailwind CSS**: Styling framework
 
-## 扩展功能建议
+## Extension Suggestions
 
-当前系统是基础版本，可根据企业需求扩展：
+The current system is a basic version that can be extended based on enterprise needs:
 
-- [ ] 接入企业内部数据库（员工信息、部门信息等）
-- [ ] 添加用户认证和权限管理
-- [ ] 实现人工转接队列（集成企业IM系统）
-- [ ] 添加对话历史持久化（数据库存储）
-- [ ] 支持多模态（图片识别、语音交互）
-- [ ] 集成企业OA系统API（自动查询、自动提交申请）
-- [ ] 添加统计分析（常见问题、部门咨询量等）
-- [ ] 多语言支持
-- [ ] 移动端适配
+- [ ] Connect to internal enterprise databases (employee info, department info, etc.)
+- [ ] Add user authentication and permission management
+- [ ] Implement human transfer queue (integrate with enterprise IM systems)
+- [ ] Add conversation history persistence (database storage)
+- [ ] Support multimodal (image recognition, voice interaction)
+- [ ] Integrate enterprise OA system API (auto-query, auto-submit requests)
+- [ ] Add statistical analysis (common questions, department inquiry volume, etc.)
+- [ ] Multi-language support
+- [ ] Mobile adaptation
 
-## 生产环境部署建议
+## Production Deployment Recommendations
 
-1. **安全性**：
-   - 添加用户认证（JWT、OAuth等）
-   - API限流和访问控制
-   - 敏感信息加密存储
+1. **Security**:
+   - Add user authentication (JWT, OAuth, etc.)
+   - API rate limiting and access control
+   - Sensitive information encrypted storage
 
-2. **性能优化**：
-   - 使用持久化向量数据库（如Milvus、Pinecone）
-   - 添加缓存层（Redis）
-   - 负载均衡和水平扩展
+2. **Performance Optimization**:
+   - Use persistent vector database (e.g., Milvus, Pinecone)
+   - Add caching layer (Redis)
+   - Load balancing and horizontal scaling
 
-3. **监控和日志**：
-   - 集成APM工具（如Sentry）
-   - 日志收集和分析
-   - 监控告警机制
+3. **Monitoring and Logging**:
+   - Integrate APM tools (e.g., Sentry)
+   - Log collection and analysis
+   - Monitoring and alerting
 
-4. **高可用性**：
-   - 多实例部署
-   - 数据库主从复制
-   - 定期备份
+4. **High Availability**:
+   - Multi-instance deployment
+   - Database primary-replica replication
+   - Regular backups
 
-## 贡献指南
+## Contributing
 
-欢迎提交 Issue 和 Pull Request！
+Issues and Pull Requests are welcome!
 
 ## License
 
@@ -435,8 +435,8 @@ MIT License
 
 ---
 
-**联系方式**
+**Contact**
 
-如有问题或建议，请通过以下方式联系：
-- 提交 GitHub Issue
-- 邮件联系：your-email@company.com
+For questions or suggestions, please reach out via:
+- Submit a GitHub Issue
+- Email: your-email@company.com

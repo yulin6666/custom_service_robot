@@ -1,5 +1,5 @@
 """
-LangGraph状态图定义
+LangGraph state graph definition
 """
 from langgraph.graph import StateGraph, END
 
@@ -17,12 +17,12 @@ from .nodes import (
 
 def create_enterprise_query_graph():
     """
-    创建企业内部查询助手状态图
+    Create the internal enterprise query assistant state graph
     """
-    # 创建状态图
+    # Create state graph
     workflow = StateGraph(EnterpriseQueryState)
 
-    # 添加节点
+    # Add nodes
     workflow.add_node("intent_recognition", intent_recognition_node)
     workflow.add_node("greeting_handler", greeting_handler_node)
     workflow.add_node("knowledge_retrieval", knowledge_retrieval_node)
@@ -30,10 +30,10 @@ def create_enterprise_query_graph():
     workflow.add_node("response_generation", response_generation_node)
     workflow.add_node("transfer_to_human", transfer_to_human_node)
 
-    # 设置入口点
+    # Set entry point
     workflow.set_entry_point("intent_recognition")
 
-    # 添加条件路由边（从意图识别到各个处理器）
+    # Add conditional routing edges (from intent recognition to each handler)
     workflow.add_conditional_edges(
         "intent_recognition",
         router_node,
@@ -45,18 +45,18 @@ def create_enterprise_query_graph():
         }
     )
 
-    # 各处理节点到响应生成或结束
+    # Each handler node to response generation or end
     workflow.add_edge("greeting_handler", END)
     workflow.add_edge("knowledge_retrieval", "response_generation")
     workflow.add_edge("chitchat_handler", END)
     workflow.add_edge("response_generation", END)
     workflow.add_edge("transfer_to_human", END)
 
-    # 编译图
+    # Compile graph
     app = workflow.compile()
 
     return app
 
 
-# 兼容性别名
+# Compatibility alias
 create_customer_service_graph = create_enterprise_query_graph

@@ -1,72 +1,72 @@
-# Railway 部署准备完成 ✅
+# Railway Deployment preparation completed ✅
 
-你的智能客服机器人已经完全准备好部署到 Railway！
+Your smart customer service bot is completely ready to deploy to Railway！
 
-## 📦 已完成的工作
+## 📦 completed work
 
-### 1. ✅ API 封装
-- 创建了完整的 FastAPI REST API (`api.py`)
-- 所有对话日志都会在 response 中返回
-- 支持会话管理、健康检查、状态图查看
+### 1. ✅ API encapsulation
+- created a complete FastAPI REST API (`api.py`)
+- All conversation logs will be response return in
+- Supports session management, health check, and status chart viewing
 
-### 2. ✅ Docker 化
-- `Dockerfile` - 优化的多层构建
-- `docker-compose.yml` - 本地一键启动
-- `.dockerignore` - 减小镜像大小
-- embedding 模型预下载，加快启动速度
+### 2. ✅ Docker change
+- `Dockerfile` - Optimized multi-layer build
+- `docker-compose.yml` - Local one-click startup
+- `.dockerignore` - Reduce image size
+- embedding Model pre-download to speed up startup
 
-### 3. ✅ Railway 适配
-- 支持 `PORT` 环境变量（Railway 自动分配）
-- 所有配置通过环境变量管理
-- 相对路径支持，适配云环境
-- `railway.json` 配置文件
+### 3. ✅ Railway adaptation
+- support `PORT` Environment variables (Railway automatically allocated)
+- All configurations are managed through environment variables
+- Relative path support, adaptable to cloud environment
+- `railway.json` Configuration file
 
-### 4. ✅ 日志系统
-- 创建了 `log_collector.py` 捕获所有 print 输出
-- API 响应中包含完整的 LangGraph 执行日志
-- 清晰展示：意图识别 → 路由 → 处理 → 响应生成
+### 4. ✅ Logging system
+- Created `log_collector.py` capture all print output
+- API The response contains the complete LangGraph execution log
+- Clear presentation: intent recognition → routing → deal with → response generation
 
-### 5. ✅ 文档完善
-- `README_RAILWAY.md` - 快速部署指南
-- `RAILWAY_DEPLOY.md` - 详细部署文档（8000+ 字）
-- `DEPLOYMENT_CHECKLIST.md` - 部署前检查清单
-- `API_README.md` - API 使用文档
-- `.env.example` - 环境变量模板
+### 5. ✅ Complete documentation
+- `README_RAILWAY.md` - Quick Deployment Guide
+- `RAILWAY_DEPLOY.md` - Detailed deployment documentation (8000+ Character)
+- `DEPLOYMENT_CHECKLIST.md` - Pre-deployment checklist
+- `API_README.md` - API Use documentation
+- `.env.example` - Environment variable template
 
-### 6. ✅ 工具脚本
-- `test_api.py` - 自动化 API 测试
-- `start.sh` - 多种方式启动脚本
-- `Makefile` - 常用命令快捷方式
+### 6. ✅ tool script
+- `test_api.py` - automation API test
+- `start.sh` - Multiple ways to start scripts
+- `Makefile` - Common command shortcuts
 
 ---
 
-## 🚀 快速部署到 Railway
+## 🚀 Quickly deploy to Railway
 
-### 第一步：推送到 GitHub
+### Step one: push to GitHub
 
 ```bash
-# 添加远程仓库（替换为你的仓库地址）
+# Add a remote warehouse (replace with your warehouse address)
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
 
-# 提交所有更改
+# Commit all changes
 git add .
-git commit -m "准备 Railway 部署"
+git commit -m "Prepare Railway deploy"
 
-# 推送到 GitHub
+# push to GitHub
 git push -u origin main
 ```
 
-### 第二步：在 Railway 部署
+### Step 2: In Railway deploy
 
-1. 访问 [Railway Dashboard](https://railway.app/dashboard)
-2. 点击 **"New Project"**
-3. 选择 **"Deploy from GitHub repo"**
-4. 选择你的仓库
-5. Railway 会自动检测 Dockerfile 并构建
+1. access [Railway Dashboard](https://railway.app/dashboard)
+2. Click **"New Project"**
+3. choose **"Deploy from GitHub repo"**
+4. Choose your warehouse
+5. Railway Will automatically detect Dockerfile and build
 
-### 第三步：配置环境变量
+### Step 3: Configure environment variables
 
-在 Railway 项目的 **Variables** 标签中添加：
+exist Railway project **Variables** Add to the tag:
 
 ```bash
 OPENAI_API_KEY=sk-c62c4cde8fe747faa4d919780339295f
@@ -74,90 +74,90 @@ OPENAI_BASE_URL=https://api.deepseek.com/v1
 LLM_MODEL=deepseek-chat
 ```
 
-### 第四步：等待部署完成
+### Step 4: Wait for deployment to complete
 
-- 首次部署约 5-10 分钟
-- Railway 会自动分配公网域名
-- 访问 `https://your-app.railway.app/health` 验证
+- First deployment approx. 5-10 minute
+- Railway A public domain name will be automatically assigned
+- access `https://your-app.railway.app/health` verify
 
 ---
 
-## 🧪 本地测试
+## 🧪 local test
 
-在部署前，先本地测试：
+Before deploying, test locally:
 
 ```bash
-# 方式一：Docker Compose（推荐）
+# Method 1: Docker Compose（recommend)
 docker-compose up -d
 
-# 方式二：使用 Makefile
+# Method 2: Use Makefile
 make docker-build
 make docker-run
 
-# 方式三：直接运行
+# Method three: run directly
 python api.py
 ```
 
-测试 API：
+test API：
 ```bash
 python test_api.py
 ```
 
 ---
 
-## 📝 部署清单
+## 📝 Deployment checklist
 
-请查看 `DEPLOYMENT_CHECKLIST.md` 确保：
-- [ ] 代码已推送到 GitHub
-- [ ] API Key 已准备好
-- [ ] 本地 Docker 测试通过
-- [ ] Railway 账号已准备好
+Please check `DEPLOYMENT_CHECKLIST.md` make sure:
+- [ ] Code has been pushed to GitHub
+- [ ] API Key ready
+- [ ] local Docker Test passed
+- [ ] Railway Account is ready
 
 ---
 
-## 🔗 重要文件索引
+## 🔗 Important document index
 
-| 文件 | 用途 |
+| document | use |
 |------|------|
-| `api.py` | FastAPI 应用入口 |
-| `Dockerfile` | Docker 镜像构建 |
-| `railway.json` | Railway 配置 |
-| `core/config.py` | 环境变量配置 |
-| `core/log_collector.py` | 日志收集器 |
-| `README_RAILWAY.md` | 快速部署指南 ⭐ |
-| `RAILWAY_DEPLOY.md` | 详细部署文档 📖 |
-| `DEPLOYMENT_CHECKLIST.md` | 部署检查清单 ✅ |
+| `api.py` | FastAPI Application entrance |
+| `Dockerfile` | Docker Image build |
+| `railway.json` | Railway Configuration |
+| `core/config.py` | Environment variable configuration |
+| `core/log_collector.py` | Log collector |
+| `README_RAILWAY.md` | Quick Deployment Guide ⭐ |
+| `RAILWAY_DEPLOY.md` | Detailed deployment documentation 📖 |
+| `DEPLOYMENT_CHECKLIST.md` | Deployment checklist ✅ |
 
 ---
 
-## 📊 API 端点预览
+## 📊 API Endpoint preview
 
-部署后可用的端点：
+Endpoints available after deployment:
 
 ```
-GET  /health                    - 健康检查
-GET  /docs                      - Swagger API 文档
-POST /api/v1/sessions           - 创建会话
-POST /api/v1/chat               - 对话（含完整日志）
-GET  /api/v1/graph              - 查看状态图
-GET  /api/v1/sessions/{id}      - 查询会话
+GET  /health                    - health check
+GET  /docs                      - Swagger API document
+POST /api/v1/sessions           - Create session
+POST /api/v1/chat               - Conversation (complete log included)
+GET  /api/v1/graph              - View status diagram
+GET  /api/v1/sessions/{id}      - query session
 ```
 
 ---
 
-## 🎯 关键特性
+## 🎯 Key Features
 
-### ✨ 完整的执行日志
+### ✨ Complete execution log
 
-每次调用 `/api/v1/chat` 都会返回：
+every call `/api/v1/chat` will return:
 
 ```json
 {
-  "response": "您好！我是智能客服助手...",
+  "response": "Hello! I am an intelligent customer service assistant...",
   "logs": [
-    "[节点] 进入意图识别节点",
-    "[节点] 识别意图: greeting (置信度: 0.95)",
-    "[路由] 路由到 greeting_handler",
+    "[node] Enter the intent recognition node",
+    "[node] Identify intent: greeting (Confidence: 0.95)",
+    "[routing] route to greeting_handler",
     "..."
   ],
   "session_id": "...",
@@ -165,78 +165,78 @@ GET  /api/v1/sessions/{id}      - 查询会话
 }
 ```
 
-**你可以清楚看到整个 LangGraph 的运行过程！**
+**you can clearly see the entire LangGraph operation process!**
 
 ---
 
-## 💰 成本估算
+## 💰 cost estimate
 
-- **Railway 免费额度**：$5/月
-- **预估运行成本**：$7-10/月（1GB 内存，24/7）
-- **API 调用成本**：DeepSeek ~$10-20/月
+- **Railway Free quota**：$5/moon
+- **Estimated running costs**：$7-10/month (1GB Memory, 24/7)
+- **API call cost**：DeepSeek ~$10-20/moon
 
-**总计**：约 $17-30/月
-
----
-
-## 🆘 遇到问题？
-
-### 构建失败
-- 查看 Railway 构建日志
-- 可能是模型下载超时，重试即可
-
-### API 报错
-- 检查环境变量 `OPENAI_API_KEY`
-- 确认 API Key 有余额
-
-### 内存不足
-- 升级 Railway 计划
-- 或使用更小的 embedding 模型
-
-详细问题解决请查看 `RAILWAY_DEPLOY.md` 的"常见问题"章节。
+**total**：about $17-30/moon
 
 ---
 
-## 📚 下一步
+## 🆘 Having a problem?
 
-1. ✅ **部署到 Railway**
-2. 🔧 **配置自定义域名**（可选）
-3. 📊 **监控日志和性能**
-4. 🔐 **添加 API 认证**（如需要）
-5. 📈 **优化性能和成本**
+### Build failed
+- Check Railway Build log
+- It may be that the model download timed out, please try again.
 
----
+### API Report an error
+- Check environment variables `OPENAI_API_KEY`
+- confirm API Key Have balance
 
-## 🎉 恭喜！
+### Out of memory
+- upgrade Railway plan
+- or use smaller embedding Model
 
-你的智能客服机器人已经完全准备好部署到 Railway 了！
-
-所有的 print 日志都会在 API response 中返回，你可以清楚地看到整个 LangGraph 的执行流程。
-
-**开始部署吧！** 🚀
+Please see detailed problem solving `RAILWAY_DEPLOY.md` of"FAQ"chapter.
 
 ---
 
-## 快速命令参考
+## 📚 Next step
+
+1. ✅ **deploy to Railway**
+2. 🔧 **Configure a custom domain name**（optional)
+3. 📊 **Monitor logs and performance**
+4. 🔐 **Add to API Certification**（if needed)
+5. 📈 **Optimize performance and cost**
+
+---
+
+## 🎉 Congratulations!
+
+Your smart customer service bot is completely ready to deploy to Railway Got it!
+
+all print The logs will be in API response Return in and you can clearly see the entire LangGraph execution process.
+
+**Let’s start deploying!** 🚀
+
+---
+
+## Quick command reference
 
 ```bash
-# 本地测试
+# local test
 make docker-build && make docker-run
 
-# 查看日志
+# View log
 make docker-logs
 
-# 停止服务
+# Stop service
 make docker-stop
 
-# 部署到 Railway（需安装 CLI）
+# deploy to Railway（Requires installation CLI）
 railway login
 railway up
 
-# 查看 Railway 日志
+# Check Railway log
 railway logs
 ```
 
 ---
 
-**有问题随时查看文档或提 Issue！Good luck! 💪**
+**If you have any questions, feel free to check the documentation or ask questions Issue！Good luck! 💪**

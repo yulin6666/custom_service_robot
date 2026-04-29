@@ -1,5 +1,5 @@
 """
-日志收集器 - 用于捕获所有print输出
+Log collector - captures all print output
 """
 import sys
 from io import StringIO
@@ -8,7 +8,7 @@ from contextlib import contextmanager
 
 
 class LogCollector:
-    """收集程序运行过程中的所有输出"""
+    """Collect all output during program execution"""
 
     def __init__(self):
         self.logs: List[str] = []
@@ -16,14 +16,14 @@ class LogCollector:
         self._string_io = None
 
     def start_capture(self):
-        """开始捕获输出"""
+        """Start capturing output"""
         self.logs = []
         self._original_stdout = sys.stdout
         self._string_io = StringIO()
         sys.stdout = self._string_io
 
     def stop_capture(self):
-        """停止捕获并返回所有日志"""
+        """Stop capturing and return all logs"""
         if self._original_stdout:
             sys.stdout = self._original_stdout
             output = self._string_io.getvalue()
@@ -34,17 +34,17 @@ class LogCollector:
         return self.logs
 
     def get_logs(self) -> List[str]:
-        """获取当前收集到的所有日志"""
+        """Get all currently collected logs"""
         return self.logs
 
     def clear(self):
-        """清空日志"""
+        """Clear logs"""
         self.logs = []
 
 
 @contextmanager
 def capture_logs():
-    """上下文管理器，用于捕获代码块中的所有输出"""
+    """Context manager for capturing all output within a code block"""
     collector = LogCollector()
     collector.start_capture()
     try:

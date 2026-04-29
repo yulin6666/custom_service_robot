@@ -1,4 +1,4 @@
-# LangChain核心
+# LangChain Core
 langchain==0.3.13
 langchain-core==0.3.28
 langchain-openai==0.2.14
@@ -11,14 +11,14 @@ langgraph==0.2.59
 langchain-huggingface==0.1.2
 sentence-transformers==3.3.1
 
-# 基础依赖
+# Base Dependencies
 openai>=1.58.1,<2.0.0
 pydantic==2.10.4
 
-# FastAPI 及 REST API 相关
+# FastAPI and REST API Related
 fastapi>=0.115.0
 uvicorn[standard]>=0.32.0
 python-multipart>=0.0.9
 
-# 其他工具
+# Other Tools
 python-dotenv>=1.0.0

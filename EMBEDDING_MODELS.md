@@ -1,19 +1,19 @@
-# Embedding 模型选择指南
+# Embedding Model Selection Guide
 
-## 问题描述
+## Problem description
 
-原始配置使用 `sentence-transformers/all-mpnet-base-v2` 英文模型，对中文语义理解不够好，导致"如何报销差旅费"无法正确匹配到相关文档。
+Original configuration used `sentence-transformers/all-mpnet-base-v2` The English model does not understand Chinese semantics well enough, resulting in"How to claim travel expenses"Unable to correctly match related documents.
 
-## 推荐的中文 Embedding 模型
+## Recommended Chinese Embedding Model
 
-### 方案1: BAAI/bge-base-zh-v1.5 （推荐）✅
+### Option 1: BAAI/bge-base-zh-v1.5 （recommend)✅
 
-**优点：**
-- 专门针对中文优化
-- 效果好，准确度高
-- 模型大小适中（约400MB）
+**advantage:**
+- Specifically optimized for Chinese
+- Good effect and high accuracy
+- The model is of medium size (approximately 400MB)
 
-**配置：**
+**Configuration:**
 ```python
 embeddings = HuggingFaceEmbeddings(
     model_name="BAAI/bge-base-zh-v1.5",
@@ -22,14 +22,14 @@ embeddings = HuggingFaceEmbeddings(
 )
 ```
 
-### 方案2: paraphrase-multilingual-MiniLM-L12-v2
+### Option 2: paraphrase-multilingual-MiniLM-L12-v2
 
-**优点：**
-- 支持多语言（包括中文）
-- 模型较小（约470MB）
-- 速度快
+**advantage:**
+- Support multiple languages ​​(including Chinese)
+- The model is smaller (about 470MB)
+- fast
 
-**配置：**
+**Configuration:**
 ```python
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
@@ -38,17 +38,17 @@ embeddings = HuggingFaceEmbeddings(
 )
 ```
 
-### 方案3: BAAI/bge-large-zh-v1.5
+### Option 3: BAAI/bge-large-zh-v1.5
 
-**优点：**
-- 最高准确度
-- 专业场景推荐
+**advantage:**
+- highest accuracy
+- Professional scene recommendation
 
-**缺点：**
-- 模型较大（约1.3GB）
-- 速度较慢
+**shortcoming:**
+- The model is larger (approximately 1.3GB）
+- slower
 
-**配置：**
+**Configuration:**
 ```python
 embeddings = HuggingFaceEmbeddings(
     model_name="BAAI/bge-large-zh-v1.5",
@@ -57,68 +57,68 @@ embeddings = HuggingFaceEmbeddings(
 )
 ```
 
-## 如何切换模型
+## How to switch models
 
-编辑 `core/config.py` 文件，修改第35行的 `model_name` 参数：
+edit `core/config.py` file, modify line 35 `model_name` parameter:
 
 ```python
 embeddings = HuggingFaceEmbeddings(
-    model_name="你选择的模型名称",  # 改这里
+    model_name="Model name of your choice",  # Change here
     model_kwargs={'device': 'cpu'},
     encode_kwargs={'normalize_embeddings': True}
 )
 ```
 
-然后重启API服务。
+Then restart the API service.
 
-## 模型下载加速
+## Model download acceleration
 
-如果HuggingFace下载速度慢，可以使用镜像：
+If HuggingFace is slow to download, you can use mirroring:
 
 ```bash
-# 设置环境变量
+# Set environment variables
 export HF_ENDPOINT=https://hf-mirror.com
 
-# 然后启动服务
+# Then start the service
 python api.py
 ```
 
-或者在代码中配置：
+Or configure it in code:
 
 ```python
 import os
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 ```
 
-## 测试模型效果
+## Test model effect
 
-运行测试脚本：
+Run the test script:
 
 ```bash
 python test_embedding.py
 ```
 
-这个脚本会测试不同问题和文档之间的相似度，帮助你验证模型效果。
+This script will test the similarity between different questions and documents to help you verify the model effect.
 
-## 性能对比
+## Performance comparison
 
-| 模型 | 大小 | 中文准确度 | 速度 | 推荐场景 |
+| Model | size | Chinese accuracy | speed | Recommended scenarios |
 |------|------|-----------|------|---------|
-| bge-base-zh-v1.5 | 400MB | ⭐⭐⭐⭐⭐ | 快 | 通用推荐 |
-| bge-large-zh-v1.5 | 1.3GB | ⭐⭐⭐⭐⭐ | 中 | 专业场景 |
-| paraphrase-multilingual | 470MB | ⭐⭐⭐⭐ | 快 | 多语言支持 |
-| all-mpnet-base-v2 | 420MB | ⭐⭐ | 快 | 仅适合英文 |
+| bge-base-zh-v1.5 | 400MB | ⭐⭐⭐⭐⭐ | quick | General recommendation |
+| bge-large-zh-v1.5 | 1.3GB | ⭐⭐⭐⭐⭐ | middle | Professional scene |
+| paraphrase-multilingual | 470MB | ⭐⭐⭐⭐ | quick | Multi-language support |
+| all-mpnet-base-v2 | 420MB | ⭐⭐ | quick | Only suitable for English |
 
-## 常见问题
+## FAQ
 
-### Q: 为什么"如何报销差旅费"找不到相关文档？
+### Q: Why"How to claim travel expenses"Can't find relevant documentation?
 
-A: 原因是英文 embedding 模型对中文的语义理解不够准确。切换到中文模型后可以解决。
+A: The reason is English embedding The model's semantic understanding of Chinese is not accurate enough. It can be solved after switching to Chinese model.
 
-### Q: 切换模型后需要重新处理知识库吗？
+### Q: Do I need to reprocess the knowledge base after switching models?
 
-A: 不需要。重启服务时会自动使用新模型重新向量化知识库。
+A: unnecessary. The knowledge base will automatically be re-vectorized using the new model when the service is restarted.
 
-### Q: 如何验证模型是否生效？
+### Q: How to verify whether the model is valid?
 
-A: 重启后查询"如何报销差旅费？"，检索日志应该显示匹配到财务报销相关文档，而不是采购文档。
+A: Query after restart"How to claim travel expenses?"，Retrieval logs should show matches to financial reimbursement related documents, not procurement documents.

@@ -1,5 +1,5 @@
 """
-FastAPI REST API 服务
+FastAPI REST API service
 """
 import os
 from typing import Optional, List
@@ -12,116 +12,116 @@ from contextlib import asynccontextmanager
 from core.main import EnterpriseQueryBot
 
 
-# 请求模型
+# Request models
 class ChatRequest(BaseModel):
-    """聊天请求模型"""
-    message: str = Field(..., description="用户输入的消息", min_length=1)
-    session_id: Optional[str] = Field(None, description="会话ID，如果为空则创建新会话")
+    """Chat request model"""
+    message: str = Field(..., description="User input message", min_length=1)
+    session_id: Optional[str] = Field(None, description="Session ID; if empty, a new session will be created")
 
 
 class SessionRequest(BaseModel):
-    """创建会话请求模型"""
-    user_id: Optional[str] = Field(None, description="用户ID，如果为空则自动生成")
+    """Create session request model"""
+    user_id: Optional[str] = Field(None, description="User ID; if empty, one will be auto-generated")
 
 
-# 响应模型
+# Response models
 class ChatResponse(BaseModel):
-    """聊天响应模型"""
-    response: str = Field(..., description="机器人的回复")
-    session_id: str = Field(..., description="会话ID")
-    logs: List[str] = Field(..., description="执行日志，展示LangGraph的运行过程")
-    status: str = Field(..., description="状态：success 或 error")
-    error: Optional[str] = Field(None, description="错误信息（如果有）")
+    """Chat response model"""
+    response: str = Field(..., description="Bot reply")
+    session_id: str = Field(..., description="Session ID")
+    logs: List[str] = Field(..., description="Execution logs showing LangGraph runtime flow")
+    status: str = Field(..., description="Status: success or error")
+    error: Optional[str] = Field(None, description="Error message (if any)")
 
 
 class SessionResponse(BaseModel):
-    """会话响应模型"""
-    session_id: str = Field(..., description="会话ID")
-    user_id: str = Field(..., description="用户ID")
-    message: str = Field(..., description="提示信息")
+    """Session response model"""
+    session_id: str = Field(..., description="Session ID")
+    user_id: str = Field(..., description="User ID")
+    message: str = Field(..., description="Prompt message")
 
 
 class HealthResponse(BaseModel):
-    """健康检查响应模型"""
-    status: str = Field(..., description="服务状态")
-    message: str = Field(..., description="提示信息")
+    """Health check response model"""
+    status: str = Field(..., description="Service status")
+    message: str = Field(..., description="Prompt message")
 
 
-# 全局变量，存储机器人实例
+# Global variable storing bot instance
 bot: Optional[EnterpriseQueryBot] = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """应用生命周期管理"""
-    # 启动时初始化机器人
+    """Application lifecycle management"""
+    # Initialize bot on startup
     global bot
-    print("正在初始化企业内部查询助手...")
+    print("Initializing internal enterprise query assistant...")
     bot = EnterpriseQueryBot()
 
-    # 生成状态图PNG
-    print("正在生成状态图...")
+    # Generate state graph PNG
+    print("Generating state graph...")
     bot.save_graph_to_png("customer_service_graph.png")
-    print("状态图已生成")
+    print("State graph generated")
 
     yield
 
-    # 关闭时清理资源
-    print("正在关闭企业内部查询助手...")
+    # Clean up resources on shutdown
+    print("Shutting down internal enterprise query assistant...")
 
 
-# 创建FastAPI应用
+# Create FastAPI application
 app = FastAPI(
-    title="企业内部查询助手 API",
-    description="基于 LangGraph 的企业内部查询助手 REST API 服务",
+    title="Internal Enterprise Query Assistant API",
+    description="REST API service for internal enterprise query assistant based on LangGraph",
     version="1.0.0",
     lifespan=lifespan
 )
 
-# 配置CORS中间件
+# Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 允许所有来源，生产环境建议指定具体域名
+    allow_origins=["*"],  # Allow all origins; in production, specify exact domains
     allow_credentials=True,
-    allow_methods=["*"],  # 允许所有HTTP方法（包括OPTIONS）
-    allow_headers=["*"],  # 允许所有请求头
+    allow_methods=["*"],  # Allow all HTTP methods (including OPTIONS)
+    allow_headers=["*"],  # Allow all request headers
 )
 
 
 @app.get("/", response_model=HealthResponse)
 async def root():
-    """根路径，返回API信息"""
+    """Root path, returns API info"""
     return {
         "status": "running",
-        "message": "企业内部查询助手 API 服务正在运行"
+        "message": "Internal enterprise query assistant API service is running"
     }
 
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
-    """健康检查端点"""
+    """Health check endpoint"""
     if bot is None:
-        raise HTTPException(status_code=503, detail="机器人尚未初始化")
+        raise HTTPException(status_code=503, detail="Bot has not been initialized yet")
 
     return {
         "status": "healthy",
-        "message": "服务运行正常"
+        "message": "Service is running normally"
     }
 
 
 @app.post("/api/v1/sessions", response_model=SessionResponse)
 async def create_session(request: SessionRequest):
     """
-    创建新会话
+    Create a new session
 
     Args:
-        request: 会话请求，可选包含 user_id
+        request: Session request, optionally containing user_id
 
     Returns:
-        会话信息，包含 session_id 和 user_id
+        Session information including session_id and user_id
     """
     if bot is None:
-        raise HTTPException(status_code=503, detail="机器人尚未初始化")
+        raise HTTPException(status_code=503, detail="Bot has not been initialized yet")
 
     try:
         session_id = bot.create_session(user_id=request.user_id)
@@ -130,28 +130,28 @@ async def create_session(request: SessionRequest):
         return {
             "session_id": session_id,
             "user_id": session["user_id"],
-            "message": "会话创建成功"
+            "message": "Session created successfully"
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"创建会话失败: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to create session: {str(e)}")
 
 
 @app.post("/api/v1/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
-    企业内部查询
+    Internal enterprise query
 
     Args:
-        request: 聊天请求，包含消息和可选的会话ID
+        request: Chat request including message and optional session ID
 
     Returns:
-        机器人的回复，包含完整的执行日志
+        Bot reply with full execution logs
     """
     if bot is None:
-        raise HTTPException(status_code=503, detail="机器人尚未初始化")
+        raise HTTPException(status_code=503, detail="Bot has not been initialized yet")
 
     try:
-        # 调用机器人，捕获日志
+        # Call bot and capture logs
         result = bot.chat(
             user_input=request.message,
             session_id=request.session_id,
@@ -175,15 +175,15 @@ async def chat(request: ChatRequest):
 @app.get("/api/v1/graph")
 async def get_graph():
     """
-    获取状态图PNG图像
+    Get state graph PNG image
 
     Returns:
-        PNG图像文件
+        PNG image file
     """
     graph_path = "customer_service_graph.png"
 
     if not os.path.exists(graph_path):
-        raise HTTPException(status_code=404, detail="状态图文件不存在")
+        raise HTTPException(status_code=404, detail="State graph file does not exist")
 
     return FileResponse(
         graph_path,
@@ -195,19 +195,19 @@ async def get_graph():
 @app.get("/api/v1/sessions/{session_id}")
 async def get_session(session_id: str):
     """
-    获取会话信息
+    Get session information
 
     Args:
-        session_id: 会话ID
+        session_id: Session ID
 
     Returns:
-        会话信息
+        Session information
     """
     if bot is None:
-        raise HTTPException(status_code=503, detail="机器人尚未初始化")
+        raise HTTPException(status_code=503, detail="Bot has not been initialized yet")
 
     if session_id not in bot.sessions:
-        raise HTTPException(status_code=404, detail="会话不存在")
+        raise HTTPException(status_code=404, detail="Session does not exist")
 
     session = bot.sessions[session_id]
 
@@ -221,15 +221,15 @@ async def get_session(session_id: str):
 @app.get("/api/v1/knowledge-base")
 async def get_knowledge_base():
     """
-    获取知识库内容
+    Get knowledge base content
 
     Returns:
-        知识库文件的完整内容
+        Full content of the knowledge base file
     """
     from core.config import KNOWLEDGE_BASE_PATH
 
     if not os.path.exists(KNOWLEDGE_BASE_PATH):
-        raise HTTPException(status_code=404, detail="知识库文件不存在")
+        raise HTTPException(status_code=404, detail="Knowledge base file does not exist")
 
     try:
         with open(KNOWLEDGE_BASE_PATH, 'r', encoding='utf-8') as f:
@@ -238,14 +238,14 @@ async def get_knowledge_base():
         return {
             "content": content,
             "file_path": KNOWLEDGE_BASE_PATH,
-            "message": "知识库获取成功"
+            "message": "Knowledge base retrieved successfully"
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"读取知识库失败: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to read knowledge base: {str(e)}")
 
 
 if __name__ == "__main__":
     import uvicorn
-    # 支持 Railway 等 PaaS 平台的 PORT 环境变量
+    # Support PORT environment variable for Railway and other PaaS platforms
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)

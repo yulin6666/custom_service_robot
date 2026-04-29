@@ -1,458 +1,458 @@
-企业内部查询知识库 - 员工常见问题解答
+Enterprise Internal Knowledge Base - Employee Frequently Asked Questions
 
 ===================
-一、行政管理
+I. Administration Management
 ===================
 
-问：如何申请办公用品？
-答：办公用品申请流程如下：
-1. 登录企业OA系统，进入"行政管理"模块
-2. 点击"办公用品申请"，填写申请单（包括物品名称、数量、用途）
-3. 提交后由部门主管审批
-4. 审批通过后，行政部门会在3个工作日内配送到您的工作位
-常用办公用品（笔、本、订书器等）可以直接到行政前台领取，无需申请。
+Q: How do I request office supplies?
+A: Office supplies request process:
+1. Log in to the corporate OA system and go to the "Administration Management" module
+2. Click "Office Supplies Request", fill in the request form (item name, quantity, purpose)
+3. Submit for approval by your department manager
+4. After approval, the Administration Department will deliver to your workstation within 3 business days
+Common office supplies (pens, notebooks, staplers, etc.) can be picked up directly at the Administration front desk without a request.
 
-问：会议室如何预订？
-答：会议室预订有两种方式：
-1. 在线预订：登录OA系统"会议室预订"模块，选择时间、人数、会议室，提交预订申请
-2. 电话预订：拨打行政部分机8888，由行政专员协助预订
-预订须知：
-- 提前至少2小时预订
-- 大型会议室（30人以上）需提前1天预订
-- 如需投影仪、白板等设备，请在备注中说明
-- 取消预订请提前1小时通知，否则将影响个人信用分
+Q: How do I book a meeting room?
+A: There are two ways to book a meeting room:
+1. Online booking: Log in to the OA system "Meeting Room Booking" module, select time, number of attendees, and meeting room, then submit the booking request
+2. Phone booking: Call the Administration Department at extension 8888, and an admin specialist will assist with the booking
+Booking notes:
+- Book at least 2 hours in advance
+- Large meeting rooms (30+ people) require 1 day advance booking
+- If you need a projector, whiteboard, or other equipment, please note it in the remarks
+- To cancel a booking, notify at least 1 hour in advance; otherwise it will affect your personal credit score
 
-问：公司班车时刻表是什么？
-答：公司班车时刻表如下：
-【早班车】
-- 地铁站A出口：7:30、8:00、8:30
-- 地铁站B出口：7:40、8:10、8:40
-【晚班车】
-- 公司南门：17:30、18:00、18:30、19:00
-- 公司北门：17:35、18:05、18:35、19:05
-周末和节假日班车时刻表请查看OA系统公告。如遇特殊天气或突发情况，行政部门会提前通知调整。
+Q: What is the company shuttle schedule?
+A: Company shuttle schedule:
+[Morning Shuttle]
+- Metro Station A Exit: 7:30, 8:00, 8:30
+- Metro Station B Exit: 7:40, 8:10, 8:40
+[Evening Shuttle]
+- Company South Gate: 17:30, 18:00, 18:30, 19:00
+- Company North Gate: 17:35, 18:05, 18:35, 19:05
+For weekend and holiday shuttle schedules, please check the OA system announcements. In case of special weather or emergencies, the Administration Department will notify in advance of any changes.
 
-问：如何申请快递寄送？
-答：快递寄送申请流程：
-1. 准备好需要寄送的物品和收件人信息
-2. 登录OA系统"快递申请"模块填写寄件信息
-3. 将物品送至行政部前台，由行政人员统一寄送
-4. 快递费用由公司承担（私人物品除外）
-私人快递可以寄送到公司，收件地址填写：XX市XX路XX号XX大厦XX楼行政前台，电话：XXX-XXXX。
+Q: How do I request courier service?
+A: Courier service request process:
+1. Prepare the items to be sent and the recipient's information
+2. Log in to the OA system "Courier Request" module and fill in the shipping information
+3. Bring the items to the Administration front desk; admin staff will handle the shipment
+4. Courier fees are covered by the company (personal items excluded)
+Personal packages can be delivered to the company. Use the following address: XX Building, XX Floor, Administration Front Desk, No. XX, XX Road, XX City. Phone: XXX-XXXX.
 
-问：员工工牌丢失怎么办？
-答：工牌丢失处理流程：
-1. 第一时间报告部门主管和行政部门
-2. 登录OA系统填写"工牌补办申请"
-3. 到行政部前台拍照，缴纳工本费50元
-4. 3个工作日内可领取新工牌
-临时出入可凭身份证登记后进入，但需在5个工作日内完成补办。
-
-===================
-二、人力资源
-===================
-
-问：如何申请年假？
-答：年假申请流程：
-1. 登录OA系统"请假管理"模块
-2. 选择"年假"类型，填写起止日期和事由
-3. 提交后由直属主管审批
-4. 审批通过后，HR会在系统中扣除相应假期
-年假规则：
-- 工作满1年享有5天年假，每增加1年增加1天，最多15天
-- 年假需提前3天申请，特殊情况可事后补申请
-- 年假当年有效，不结转下一年
-- 查询剩余年假可在OA"我的假期"模块查看
-
-问：工资发放时间是什么时候？
-答：公司工资发放时间为每月15日（遇节假日顺延至下一工作日）。工资构成包括：
-- 基本工资
-- 岗位津贴
-- 绩效奖金（根据上月考核结果）
-- 全勤奖（当月无迟到早退）
-- 加班费（按实际加班时长计算）
-扣除项包括：社保、公积金、个人所得税等。
-工资条可在OA系统"薪资查询"模块下载，如有疑问请联系HR部门。
-
-问：社保公积金缴纳比例是多少？
-答：社保和公积金缴纳比例如下：
-【社保】
-- 养老保险：个人8%，公司16%
-- 医疗保险：个人2%，公司9.5%
-- 失业保险：个人0.5%，公司0.5%
-- 工伤保险：个人0%，公司0.5%
-- 生育保险：个人0%，公司0.8%
-【公积金】
-- 个人12%，公司12%
-缴费基数为上一年度月平均工资，每年7月调整。查询个人社保公积金账户信息可登录当地社保/公积金官网。
-
-问：如何申请调岗或内部转岗？
-答：内部转岗申请流程：
-1. 查看OA系统"内部招聘"模块的岗位需求
-2. 确认目标岗位后，与现任部门主管沟通
-3. 获得主管同意后，填写"内部转岗申请表"
-4. 参加目标部门的面试
-5. 通过后由HR办理转岗手续
-注意：需在现岗位工作满1年才可申请转岗，转岗后试用期为1个月。
-
-问：员工培训如何报名？
-答：员工培训报名方式：
-1. 关注OA系统"培训中心"的培训公告
-2. 选择感兴趣的培训课程，点击"报名"
-3. 填写报名信息并提交
-4. 培训前1天会收到短信/邮件提醒
-培训类型包括：
-- 新员工入职培训（必修）
-- 专业技能培训（可选）
-- 管理能力提升培训（主管及以上）
-- 外部培训（需部门主管审批，公司承担费用）
-
-问：离职流程是什么？
-答：员工离职流程：
-1. 提前30天向直属主管提交书面辞职申请
-2. 填写OA系统"离职申请表"
-3. 完成工作交接，填写"工作交接清单"
-4. 办理离职手续：
-   - 归还工牌、办公用品、电脑等公司财物
-   - 结清借款、报销等财务事项
-   - IT部门注销账号权限
-   - HR部门办理离职证明、社保转移等
-5. 财务部门结算最后工资（次月15日发放）
-试用期内离职需提前3天申请。
+Q: What should I do if I lose my employee badge?
+A: Lost badge process:
+1. Immediately report to your department manager and the Administration Department
+2. Log in to the OA system and fill in the "Badge Replacement Request"
+3. Go to the Administration front desk for a photo and pay the processing fee of 50 RMB
+4. A new badge can be collected within 3 business days
+Temporary entry is allowed by registering with your ID card, but the replacement must be completed within 5 business days.
 
 ===================
-三、IT办公
+II. Human Resources
 ===================
 
-问：忘记OA系统密码怎么办？
-答：重置OA系统密码有以下方式：
-1. 自助重置：在登录页面点击"忘记密码"，通过绑定的手机号接收验证码重置
-2. IT支持：拨打IT服务台分机6666，提供工号和身份验证信息，由技术人员协助重置
-3. 现场办理：携带工牌到IT部门办公室办理
-为保证账号安全，密码需包含大小写字母、数字和特殊字符，长度不少于8位，且每90天需更换一次。
+Q: How do I apply for annual leave?
+A: Annual leave application process:
+1. Log in to the OA system "Leave Management" module
+2. Select "Annual Leave" type, fill in the start/end dates and reason
+3. Submit for approval by your direct manager
+4. After approval, HR will deduct the corresponding leave days in the system
+Annual leave rules:
+- Employees with 1+ year of service receive 5 days of annual leave; 1 additional day per year, up to 15 days
+- Annual leave must be applied for 3 days in advance; special cases may be applied retroactively
+- Annual leave is valid for the current year and does not carry over to the next year
+- Check remaining annual leave in the OA "My Leave" module
 
-问：如何申请新的软件或系统权限？
-答：软件和系统权限申请流程：
-1. 登录OA系统"IT服务"模块
-2. 选择"软件/权限申请"
-3. 填写申请信息：软件名称、用途说明、使用期限
-4. 提交后由部门主管和IT部门审批
-5. 审批通过后，IT部门会在2个工作日内完成配置
-常用办公软件（Office、浏览器等）已预装，无需申请。专业软件（设计软件、开发工具等）需申请授权。
+Q: When is salary paid?
+A: Company salary is paid on the 15th of each month (postponed to the next business day if it falls on a holiday). Salary components include:
+- Base salary
+- Position allowance
+- Performance bonus (based on previous month's evaluation)
+- Perfect attendance bonus (no tardiness or early departure in the month)
+- Overtime pay (calculated based on actual overtime hours)
+Deductions include: social insurance, housing provident fund, personal income tax, etc.
+Payslips can be downloaded in the OA system "Salary Inquiry" module. For questions, please contact the HR Department.
 
-问：电脑出现故障怎么办？
-答：电脑故障处理流程：
-1. 简单故障（如软件卡顿）可先尝试重启
-2. 无法解决请拨打IT服务台：6666
-3. 描述故障现象和紧急程度
-4. IT工程师会远程协助或上门处理
-故障处理时效：
-- 紧急故障（无法工作）：30分钟内响应
-- 一般故障：4小时内响应
-- 非紧急问题：1个工作日内处理
-如需更换硬件（键盘、鼠标、显示器等），请在OA系统提交"硬件更换申请"。
+Q: What are the social insurance and housing provident fund contribution rates?
+A: Social insurance and housing provident fund contribution rates:
+[Social Insurance]
+- Pension insurance: Individual 8%, Company 16%
+- Medical insurance: Individual 2%, Company 9.5%
+- Unemployment insurance: Individual 0.5%, Company 0.5%
+- Work injury insurance: Individual 0%, Company 0.5%
+- Maternity insurance: Individual 0%, Company 0.8%
+[Housing Provident Fund]
+- Individual 12%, Company 12%
+The contribution base is the average monthly salary of the previous year, adjusted every July. To check your personal social insurance and provident fund account information, log in to the local social insurance/provident fund official website.
 
-问：如何连接公司VPN？
-答：VPN连接步骤：
-1. 下载VPN客户端：登录OA系统"IT服务"-"VPN下载"
-2. 安装客户端并运行
-3. 输入VPN账号（工号）和密码（OA密码）
-4. 选择服务器节点，点击"连接"
-VPN使用规则：
-- 仅用于远程办公和访问内部系统
-- 禁止用于下载大文件或P2P下载
-- 连接异常请联系IT服务台
-- 首次使用需在IT部门进行身份验证
+Q: How do I apply for an internal transfer?
+A: Internal transfer application process:
+1. Check the "Internal Recruitment" module in the OA system for available positions
+2. After identifying the target position, communicate with your current department manager
+3. With manager approval, fill in the "Internal Transfer Application Form"
+4. Attend an interview with the target department
+5. After passing, HR will handle the transfer procedures
+Note: You must have worked in your current position for at least 1 year before applying for a transfer. The probation period after transfer is 1 month.
 
-问：公司Wi-Fi密码是什么？
-答：公司提供两个Wi-Fi网络：
-1. 【内网】Guest-Company（访客网络）
-   - 密码：Guest2024（每月更新，请关注OA公告）
-   - 仅可访问互联网，无法访问内部系统
-2. 【内网】Staff-Secure（员工网络）
-   - 需使用工号和OA密码连接
-   - 可访问公司内部系统
-首次连接员工网络需在IT部门登记设备MAC地址。
+Q: How do I register for employee training?
+A: Employee training registration:
+1. Follow training announcements in the OA system "Training Center"
+2. Select a training course of interest and click "Register"
+3. Fill in the registration information and submit
+4. You will receive an SMS/email reminder 1 day before the training
+Training types include:
+- New employee onboarding training (mandatory)
+- Professional skills training (optional)
+- Management capability training (for managers and above)
+- External training (requires department manager approval; company covers the cost)
 
-问：如何申请企业邮箱？
-答：企业邮箱申请：
-- 新员工入职后，HR会自动为您开通企业邮箱
-- 邮箱格式：姓名拼音@company.com
-- 初始密码为：员工工号+Aa123
-- 首次登录后请立即修改密码
-邮箱登录方式：
-1. 网页版：mail.company.com
-2. 客户端：可配置Outlook、Foxmail等邮件客户端
-3. 手机端：下载企业邮箱APP
-邮箱容量为5GB，超出请清理或申请扩容。
-
-===================
-四、法务合规
-===================
-
-问：如何申请合同审核？
-答：合同审核申请流程：
-1. 准备合同草稿（Word格式）
-2. 登录OA系统"法务服务"-"合同审核"
-3. 上传合同文件，填写合同信息（合同类型、金额、对方单位等）
-4. 提交后由法务部门审核
-5. 法务部门会在3个工作日内反馈审核意见
-重大合同（金额超过100万或涉及重要权益）需要7个工作日审核，建议提前规划时间。
-
-问：公司保密协议的主要内容是什么？
-答：员工保密协议主要包括：
-1. 保密范围：
-   - 公司商业秘密（客户名单、价格体系、市场策略等）
-   - 技术秘密（技术方案、研发数据、源代码等）
-   - 财务数据（财务报表、成本核算、投资计划等）
-2. 保密期限：在职期间及离职后2年内
-3. 保密义务：
-   - 不得泄露给第三方
-   - 不得用于个人或其他单位
-   - 妥善保管涉密文件和资料
-4. 违约责任：违反协议需承担法律责任并赔偿损失
-所有员工入职时需签署保密协议，请严格遵守。
-
-问：如何处理知识产权相关问题？
-答：知识产权处理原则：
-1. 职务成果归公司所有：
-   - 员工在职期间完成的发明创造、软件著作、商标设计等归公司所有
-   - 公司有权申请专利、著作权登记
-2. 申请专利流程：
-   - 向法务部门提交"专利申请表"
-   - 法务部门进行初步审查
-   - 委托专利代理机构办理
-3. 著作权登记：
-   - 软件、文字作品等可申请著作权登记
-   - 向法务部门提交申请和作品材料
-如发现侵权行为，请及时报告法务部门处理。
-
-问：员工如何投诉或举报违规行为？
-答：投诉举报渠道：
-1. 内部投诉：
-   - 向直属主管或HR部门反映
-   - 拨打投诉热线：8888-1234（匿名可）
-   - 发送邮件至：complaint@company.com
-2. 严重违规（贪污腐败、商业贿赂等）：
-   - 拨打集团监察热线：400-XXX-XXXX
-   - 发送邮件至：audit@group.com
-3. 匿名举报：
-   - 登录公司内网"廉洁举报平台"
-公司保护举报人权益，严禁对举报人进行打击报复。经查实的举报，举报人可获得奖励。
+Q: What is the resignation process?
+A: Employee resignation process:
+1. Submit a written resignation to your direct manager 30 days in advance
+2. Fill in the OA system "Resignation Application Form"
+3. Complete work handover and fill in the "Work Handover Checklist"
+4. Complete resignation procedures:
+   - Return badge, office supplies, computer, and other company property
+   - Settle outstanding loans, reimbursements, and other financial matters
+   - IT Department deactivates account permissions
+   - HR Department handles resignation certificate, social insurance transfer, etc.
+5. Finance Department settles final salary (paid on the 15th of the following month)
+Employees in probation must apply 3 days in advance.
 
 ===================
-五、财务报销
+III. IT Office
 ===================
 
-问：如何报销差旅费？
-答：差旅费报销流程：
-1. 出差前在OA系统提交"出差申请"并获批
-2. 出差期间保留相关票据（机票、火车票、酒店发票、餐饮发票等）
-3. 出差结束后7天内提交报销：
-   - 登录OA系统"费用报销"-"差旅费报销"
-   - 上传票据扫描件
-   - 填写费用明细（交通、住宿、餐饮、其他）
-4. 提交后由部门主管和财务部门审批
-5. 审批通过后，款项会在10个工作日内打入工资卡
-差旅费标准：
-- 交通：经济舱/二等座（总监及以上可选商务舱/一等座）
-- 住宿：300元/天（经理级）、500元/天（总监级）、800元/天（VP级）
-- 餐饮：100元/天
-- 市内交通：实报实销
+Q: What should I do if I forget my OA system password?
+A: Ways to reset your OA system password:
+1. Self-service reset: On the login page, click "Forgot Password" and reset via verification code sent to your registered phone number
+2. IT support: Call the IT service desk at extension 6666, provide your employee ID and identity verification, and a technician will assist with the reset
+3. In-person: Bring your badge to the IT Department office
+To ensure account security, passwords must contain uppercase and lowercase letters, numbers, and special characters, be at least 8 characters long, and must be changed every 90 days.
 
-问：如何报销日常费用？
-答：日常费用报销流程：
-1. 确认费用类型（办公费、通讯费、交通费、招待费等）
-2. 准备发票（必须是公司抬头的正规发票）
-3. 登录OA系统"费用报销"-选择对应费用类型
-4. 上传发票扫描件，填写费用明细和用途说明
-5. 提交审批（金额超过1000元需部门主管审批，超过5000元需财务总监审批）
-6. 审批通过后，次月15日随工资发放
-注意事项：
-- 发票需在开票日期3个月内报销
-- 招待费需附客户签到表和会议纪要
-- 办公用品需附采购申请单
+Q: How do I request new software or system permissions?
+A: Software and system permission request process:
+1. Log in to the OA system "IT Services" module
+2. Select "Software/Permission Request"
+3. Fill in the request information: software name, purpose, usage period
+4. Submit for approval by your department manager and the IT Department
+5. After approval, the IT Department will complete the configuration within 2 business days
+Common office software (Office, browsers, etc.) is pre-installed and does not require a request. Specialized software (design tools, development tools, etc.) requires authorization.
 
-问：如何查询发票真伪？
-答：发票真伪查询方式：
-1. 国家税务总局全国增值税发票查验平台：
-   - 网址：https://inv-veri.chinatax.gov.cn
-   - 输入发票代码、号码、开票日期、金额等信息查询
-2. 各地税务局官网或微信公众号
-3. 拨打12366纳税服务热线
-提交报销前建议先查验发票真伪，假发票不予报销且可能涉及法律责任。
+Q: What should I do if my computer has a problem?
+A: Computer issue handling process:
+1. For simple issues (e.g., software freezing), try restarting first
+2. If unresolved, call the IT service desk: 6666
+3. Describe the issue and its urgency
+4. An IT engineer will provide remote assistance or come on-site
+Issue response times:
+- Critical issue (unable to work): Response within 30 minutes
+- General issue: Response within 4 hours
+- Non-urgent issue: Resolved within 1 business day
+To replace hardware (keyboard, mouse, monitor, etc.), submit a "Hardware Replacement Request" in the OA system.
 
-问：公司是否可以代扣个人所得税？
-答：是的，公司依法代扣代缴个人所得税。
-1. 工资薪金所得：
-   - 每月发薪时自动预扣预缴
-   - 采用累计预扣法计算
-2. 年度汇算清缴：
-   - 每年3-6月进行上一年度个税汇算
-   - 公司会提供纳税记录和代办服务
-   - 员工也可自行通过个人所得税APP办理
-3. 专项附加扣除：
-   - 子女教育、继续教育、大病医疗、住房贷款利息、住房租金、赡养老人
-   - 请在个人所得税APP中填报，或向HR部门提交相关证明
-   - 每年12月前更新下一年扣除信息
-查询个人纳税记录可登录个人所得税APP或向财务部门申请。
+Q: How do I connect to the company VPN?
+A: VPN connection steps:
+1. Download the VPN client: Log in to the OA system "IT Services" - "VPN Download"
+2. Install and run the client
+3. Enter your VPN account (employee ID) and password (OA password)
+4. Select a server node and click "Connect"
+VPN usage rules:
+- For remote work and accessing internal systems only
+- Prohibited for downloading large files or P2P downloads
+- For connection issues, contact the IT service desk
+- First-time users must complete identity verification at the IT Department
 
-问：如何申请备用金？
-答：备用金申请流程：
-1. 确定用途（如采购、出差、活动筹备等）
-2. 登录OA系统"财务管理"-"备用金申请"
-3. 填写申请金额、用途、预计使用时间
-4. 提交部门主管和财务部门审批
-5. 审批通过后，到财务部领取现金或转账
-备用金使用规则：
-- 单次申请不超过5000元（特殊情况需总监审批）
-- 使用完毕后15天内报销并退还剩余款项
-- 逾期未报销将从工资中扣除并影响信用记录
+Q: What is the company Wi-Fi password?
+A: The company provides two Wi-Fi networks:
+1. [Guest Network] Guest-Company
+   - Password: Guest2024 (updated monthly; check OA announcements)
+   - Internet access only; cannot access internal systems
+2. [Staff Network] Staff-Secure
+   - Connect using your employee ID and OA password
+   - Can access company internal systems
+First-time connection to the staff network requires registering your device MAC address at the IT Department.
+
+Q: How do I apply for a corporate email account?
+A: Corporate email application:
+- After onboarding, HR will automatically set up your corporate email
+- Email format: firstnamelastname@company.com
+- Initial password: Employee ID + Aa123
+- Please change your password immediately after first login
+Email login methods:
+1. Web: mail.company.com
+2. Client: Configure Outlook, Foxmail, or other email clients
+3. Mobile: Download the corporate email app
+Mailbox capacity is 5 GB; please clean up or apply for an expansion if exceeded.
 
 ===================
-六、采购管理
+IV. Legal & Compliance
 ===================
 
-问：如何发起采购申请？
-答：采购申请流程：
-1. 确认采购需求（物品名称、规格、数量、用途）
-2. 登录OA系统"采购管理"-"采购申请"
-3. 填写采购申请单：
-   - 物品信息（名称、规格、数量、预算）
-   - 需求部门、使用人、到货时间要求
-   - 上传技术参数或样品图片（如有）
-4. 提交审批：
-   - 金额<1万：部门主管审批
-   - 金额1-10万：部门总监审批
-   - 金额>10万：总经理审批
-5. 采购部门会在审批通过后3个工作日内完成采购
-紧急采购请在申请单中注明，采购部门会优先处理。
+Q: How do I apply for contract review?
+A: Contract review application process:
+1. Prepare the contract draft (Word format)
+2. Log in to the OA system "Legal Services" - "Contract Review"
+3. Upload the contract file and fill in contract information (contract type, amount, counterparty, etc.)
+4. Submit for review by the Legal Department
+5. The Legal Department will provide review feedback within 3 business days
+Major contracts (amount exceeding 1 million RMB or involving significant rights) require 7 business days for review; plan your timeline accordingly.
 
-问：采购的供应商如何选择？
-答：供应商选择原则：
-1. 常规物品：
-   - 采购部门有合作供应商名录
-   - 优先从名录中选择（质量可靠、价格优惠）
-2. 特殊物品：
-   - 需求部门可推荐供应商
-   - 采购部门会进行比价和资质审核
-   - 金额超过5万需至少3家供应商报价
-3. 新供应商准入：
-   - 提交"供应商准入申请"
-   - 提供营业执照、资质证书等材料
-   - 采购部门进行评估和现场考察
-   - 评估通过后纳入供应商名录
-如对供应商有质量投诉，请联系采购部门处理。
+Q: What are the main contents of the company's non-disclosure agreement?
+A: The employee NDA mainly includes:
+1. Scope of confidentiality:
+   - Company trade secrets (client lists, pricing systems, market strategies, etc.)
+   - Technical secrets (technical solutions, R&D data, source code, etc.)
+   - Financial data (financial statements, cost accounting, investment plans, etc.)
+2. Confidentiality period: During employment and 2 years after resignation
+3. Confidentiality obligations:
+   - Must not disclose to third parties
+   - Must not use for personal or other organizations
+   - Properly safeguard confidential documents and materials
+4. Liability for breach: Violating the agreement incurs legal liability and compensation for losses
+All employees must sign the NDA upon onboarding. Please comply strictly.
 
-问：采购到货后如何验收？
-答：采购验收流程：
-1. 供应商送货时，收货人需核对：
-   - 物品名称、规格、数量是否与采购单一致
-   - 外包装是否完好，有无破损
-2. 签收后进行开箱验收：
-   - 检查物品外观、功能是否正常
-   - 核对配件、说明书等是否齐全
-3. 验收结果处理：
-   - 验收合格：在OA系统"采购验收"模块确认
-   - 验收不合格：拍照留证，联系采购部门退换货
-4. 登记资产：
-   - 固定资产（电脑、家具等）需在行政部门登记
-   - 领用物品需签字确认
-验收期限为收货后3个工作日，逾期视为验收合格。
+Q: How are intellectual property issues handled?
+A: Intellectual property handling principles:
+1. Work-related results belong to the company:
+   - Inventions, software copyrights, trademark designs, etc. completed during employment belong to the company
+   - The company has the right to apply for patents and copyright registration
+2. Patent application process:
+   - Submit a "Patent Application Form" to the Legal Department
+   - The Legal Department conducts a preliminary review
+   - Engage a patent agency to handle the application
+3. Copyright registration:
+   - Software, written works, etc. can apply for copyright registration
+   - Submit the application and work materials to the Legal Department
+If you discover any infringement, please report it to the Legal Department promptly.
 
-问：如何处理采购纠纷？
-答：采购纠纷处理流程：
-1. 常见纠纷类型：
-   - 质量问题（货不对板、有瑕疵）
-   - 交货延迟
-   - 价格争议
-   - 售后服务不到位
-2. 处理流程：
-   - 第一时间联系采购部门，提供证据（照片、聊天记录等）
-   - 采购部门协调供应商处理（退换货、赔偿等）
-   - 协商不成，提交法务部门介入
-3. 预防措施：
-   - 签订采购合同明确质量标准、交货时间、违约责任
-   - 付款前务必验收
-   - 保留采购凭证和沟通记录
-如遇重大纠纷，请及时上报部门主管和采购部门。
-
-问：公司采购是否可以申请发票？
-答：是的，所有公司采购必须索要正规发票。
-1. 发票要求：
-   - 增值税专用发票（可抵扣）或增值税普通发票
-   - 发票抬头：XX科技有限公司
-   - 税号：91XXXXXXXXXXXXXXXXX
-   - 地址电话：XX市XX路XX号，电话：XXX-XXXX
-   - 开户行及账号：XX银行XX支行，账号：XXXXXXXXXXXXXXXX
-2. 发票用途：
-   - 作为付款依据
-   - 用于财务入账和税务抵扣
-   - 固定资产需附发票登记
-3. 无发票处理：
-   - 供应商无法提供发票的，不予付款
-   - 特殊情况需总经理特批
-采购时请务必向供应商索要发票，财务部门会协助核验发票真伪。
+Q: How can employees file complaints or report violations?
+A: Complaint and reporting channels:
+1. Internal complaints:
+   - Report to your direct manager or the HR Department
+   - Call the complaint hotline: 8888-1234 (anonymous allowed)
+   - Send an email to: complaint@company.com
+2. Serious violations (corruption, commercial bribery, etc.):
+   - Call the group audit hotline: 400-XXX-XXXX
+   - Send an email to: audit@group.com
+3. Anonymous reporting:
+   - Log in to the company intranet "Integrity Reporting Platform"
+The company protects whistleblowers' rights and strictly prohibits retaliation. Verified reports may be rewarded.
 
 ===================
-七、其他常见问题
+V. Financial Reimbursement
 ===================
 
-问：公司食堂就餐如何安排？
-答：食堂就餐安排：
-1. 就餐时间：
-   - 早餐：7:30-8:30
-   - 午餐：11:30-13:00
-   - 晚餐：17:30-19:00
-2. 就餐方式：
-   - 使用员工工牌刷卡就餐（自动从工资扣除）
-   - 餐费标准：早餐5元，午餐15元，晚餐12元
-3. 菜品选择：
-   - 每日提供3种主食、6种菜品、2种汤
-   - 每周菜单会在OA系统公布
-   - 特殊饮食需求（清真、素食等）请联系食堂经理
-如对食堂有意见或建议，可在OA"员工建议"模块反馈。
+Q: How do I reimburse travel expenses?
+A: Travel expense reimbursement process:
+1. Submit a "Business Trip Application" in the OA system before the trip and get it approved
+2. Keep all relevant receipts during the trip (flight tickets, train tickets, hotel invoices, meal invoices, etc.)
+3. Submit reimbursement within 7 days after the trip:
+   - Log in to the OA system "Expense Reimbursement" - "Travel Expense Reimbursement"
+   - Upload scanned receipts
+   - Fill in expense details (transportation, accommodation, meals, other)
+4. Submit for approval by your department manager and the Finance Department
+5. After approval, the amount will be transferred to your salary card within 10 business days
+Travel expense standards:
+- Transportation: Economy class/second class (Directors and above may choose business class/first class)
+- Accommodation: 300 RMB/day (Manager level), 500 RMB/day (Director level), 800 RMB/day (VP level)
+- Meals: 100 RMB/day
+- Local transportation: Actual cost reimbursed
 
-问：公司体检福利如何申请？
-答：员工体检福利：
-1. 体检政策：
-   - 入职满1年的员工每年享有1次免费体检
-   - 体检时间：每年4-6月
-   - 体检机构：公司指定的合作医院（3家可选）
-2. 预约流程：
-   - 关注HR部门发布的体检通知
-   - 在OA系统"员工福利"-"体检预约"选择医院和时间
-   - 预约成功后会收到短信确认
-3. 体检当天：
-   - 携带工牌和身份证
-   - 空腹前往（早上8点前）
-   - 体检报告一般7-10天后可在医院官网下载
-如有特殊体检项目需求，可自费增加项目。
+Q: How do I reimburse daily expenses?
+A: Daily expense reimbursement process:
+1. Confirm the expense type (office expenses, communication fees, transportation, entertainment, etc.)
+2. Prepare invoices (must be official invoices with the company name)
+3. Log in to the OA system "Expense Reimbursement" - select the corresponding expense type
+4. Upload scanned invoices, fill in expense details and purpose
+5. Submit for approval (amounts over 1,000 RMB require department manager approval; over 5,000 RMB requires Finance Director approval)
+6. After approval, paid with salary on the 15th of the following month
+Notes:
+- Invoices must be submitted within 3 months of the invoice date
+- Entertainment expenses must include a client sign-in sheet and meeting minutes
+- Office supply purchases must include a procurement request form
 
-问：停车位如何申请？
-答：停车位申请：
-1. 地下停车场车位有限，采用申请制
-2. 申请条件：
-   - 正式员工
-   - 工作满3个月
-   - 提供行驶证和驾驶证
-3. 申请流程：
-   - 登录OA系统"行政服务"-"停车位申请"
-   - 上传行驶证和驾驶证扫描件
-   - 提交审批（按申请顺序分配）
-4. 停车费用：
-   - 固定车位：300元/月（从工资扣除）
-   - 临时停车：10元/天
-访客停车需在前台登记，免费停车2小时。
+Q: How do I verify invoice authenticity?
+A: Invoice verification methods:
+1. National Tax Administration VAT Invoice Verification Platform:
+   - Website: https://inv-veri.chinatax.gov.cn
+   - Enter invoice code, number, date, amount, and other information to verify
+2. Local tax bureau official website or WeChat public account
+3. Call the 12366 tax service hotline
+It is recommended to verify invoice authenticity before submitting for reimbursement. Fake invoices will not be reimbursed and may involve legal liability.
 
-问：如何联系各部门？
-答：公司各部门联系方式：
-【行政部】分机8888 | admin@company.com
-【人力资源部】分机8899 | hr@company.com
-【IT部】分机6666 | it@company.com
-【法务部】分机7777 | legal@company.com
-【财务部】分机8866 | finance@company.com
-【采购部】分机8855 | purchase@company.com
-总机：010-XXXX-XXXX
-前台：分机8000
-更多信息请查看OA系统"通讯录"模块。
+Q: Can the company withhold personal income tax on my behalf?
+A: Yes, the company withholds and remits personal income tax as required by law.
+1. Salary income:
+   - Automatically pre-withheld when salary is paid each month
+   - Calculated using the cumulative withholding method
+2. Annual tax reconciliation:
+   - Annual reconciliation for the previous year is conducted from March to June each year
+   - The company provides tax records and assistance services
+   - Employees can also handle it themselves through the Personal Income Tax app
+3. Special additional deductions:
+   - Children's education, continuing education, serious illness medical expenses, housing loan interest, housing rent, elderly care
+   - Please report in the Personal Income Tax app or submit relevant certificates to the HR Department
+   - Update next year's deduction information before December each year
+To check personal tax records, log in to the Personal Income Tax app or request from the Finance Department.
+
+Q: How do I apply for petty cash?
+A: Petty cash application process:
+1. Confirm the purpose (e.g., procurement, business trip, event preparation, etc.)
+2. Log in to the OA system "Financial Management" - "Petty Cash Application"
+3. Fill in the requested amount, purpose, and estimated usage period
+4. Submit for approval by your department manager and the Finance Department
+5. After approval, collect cash or receive a transfer from the Finance Department
+Petty cash usage rules:
+- Single application not to exceed 5,000 RMB (special cases require Director approval)
+- Reimburse and return remaining funds within 15 days of use
+- Overdue reimbursement will be deducted from salary and affect credit records
+
+===================
+VI. Procurement Management
+===================
+
+Q: How do I initiate a procurement request?
+A: Procurement request process:
+1. Confirm procurement needs (item name, specifications, quantity, purpose)
+2. Log in to the OA system "Procurement Management" - "Procurement Request"
+3. Fill in the procurement request form:
+   - Item information (name, specifications, quantity, budget)
+   - Requesting department, user, required delivery time
+   - Upload technical specifications or sample images (if available)
+4. Submit for approval:
+   - Amount < 10,000 RMB: Department manager approval
+   - Amount 10,000-100,000 RMB: Department director approval
+   - Amount > 100,000 RMB: General manager approval
+5. The Procurement Department will complete the purchase within 3 business days after approval
+For urgent procurement, note it in the request form and the Procurement Department will prioritize it.
+
+Q: How are suppliers selected for procurement?
+A: Supplier selection principles:
+1. Standard items:
+   - The Procurement Department maintains a list of partner suppliers
+   - Prefer suppliers from the list (reliable quality, competitive pricing)
+2. Special items:
+   - The requesting department may recommend suppliers
+   - The Procurement Department will compare prices and review qualifications
+   - Amounts over 50,000 RMB require quotes from at least 3 suppliers
+3. New supplier onboarding:
+   - Submit a "Supplier Onboarding Application"
+   - Provide business license, qualification certificates, and other materials
+   - The Procurement Department conducts evaluation and on-site inspection
+   - After passing evaluation, the supplier is added to the supplier list
+For quality complaints about suppliers, please contact the Procurement Department.
+
+Q: How is goods acceptance handled after procurement delivery?
+A: Procurement acceptance process:
+1. When the supplier delivers, the recipient must verify:
+   - Whether item name, specifications, and quantity match the purchase order
+   - Whether the outer packaging is intact and undamaged
+2. After signing, conduct unboxing inspection:
+   - Check item appearance and functionality
+   - Verify that accessories, manuals, etc. are complete
+3. Acceptance result handling:
+   - Accepted: Confirm in the OA system "Procurement Acceptance" module
+   - Not accepted: Take photos as evidence, contact the Procurement Department for return/exchange
+4. Asset registration:
+   - Fixed assets (computers, furniture, etc.) must be registered with the Administration Department
+   - Items received must be signed for
+Acceptance period is 3 business days after receipt; overdue is considered accepted.
+
+Q: How are procurement disputes handled?
+A: Procurement dispute handling process:
+1. Common dispute types:
+   - Quality issues (items not as described, defects)
+   - Delivery delays
+   - Price disputes
+   - Inadequate after-sales service
+2. Handling process:
+   - Contact the Procurement Department immediately with evidence (photos, chat records, etc.)
+   - The Procurement Department coordinates with the supplier (return/exchange, compensation, etc.)
+   - If negotiation fails, submit to the Legal Department for intervention
+3. Preventive measures:
+   - Sign procurement contracts specifying quality standards, delivery time, and liability for breach
+   - Always inspect before payment
+   - Keep procurement vouchers and communication records
+For major disputes, please report to your department manager and the Procurement Department promptly.
+
+Q: Can the company request invoices for procurement?
+A: Yes, all company procurement must request official invoices.
+1. Invoice requirements:
+   - VAT special invoice (deductible) or VAT general invoice
+   - Invoice header: XX Technology Co., Ltd.
+   - Tax number: 91XXXXXXXXXXXXXXXXX
+   - Address and phone: No. XX, XX Road, XX City, Phone: XXX-XXXX
+   - Bank and account: XX Bank XX Branch, Account: XXXXXXXXXXXXXXXX
+2. Invoice purposes:
+   - As payment basis
+   - For financial accounting and tax deduction
+   - Fixed assets require invoice registration
+3. Handling without invoice:
+   - Suppliers unable to provide invoices will not be paid
+   - Special cases require General Manager approval
+Always request invoices from suppliers during procurement; the Finance Department will assist in verifying invoice authenticity.
+
+===================
+VII. Other Common Questions
+===================
+
+Q: How is the company cafeteria arranged?
+A: Cafeteria arrangements:
+1. Meal times:
+   - Breakfast: 7:30-8:30
+   - Lunch: 11:30-13:00
+   - Dinner: 17:30-19:00
+2. Dining method:
+   - Use employee badge to swipe for meals (automatically deducted from salary)
+   - Meal prices: Breakfast 5 RMB, Lunch 15 RMB, Dinner 12 RMB
+3. Menu options:
+   - 3 staple foods, 6 dishes, and 2 soups provided daily
+   - Weekly menu is published in the OA system
+   - For special dietary needs (halal, vegetarian, etc.), please contact the cafeteria manager
+For feedback or suggestions about the cafeteria, use the OA "Employee Suggestions" module.
+
+Q: How do I apply for the company health check benefit?
+A: Employee health check benefit:
+1. Health check policy:
+   - Employees with 1+ year of service receive 1 free health check per year
+   - Health check period: April to June each year
+   - Health check facility: Company-designated partner hospitals (3 options)
+2. Booking process:
+   - Follow the health check notice from the HR Department
+   - In the OA system "Employee Benefits" - "Health Check Booking", select hospital and time
+   - You will receive an SMS confirmation after successful booking
+3. On the day of the health check:
+   - Bring your badge and ID card
+   - Come on an empty stomach (before 8 AM)
+   - Health check report is generally available for download on the hospital's official website 7-10 days later
+Additional health check items can be added at personal expense.
+
+Q: How do I apply for a parking space?
+A: Parking space application:
+1. Underground parking spaces are limited and allocated by application
+2. Application requirements:
+   - Full-time employee
+   - Worked for at least 3 months
+   - Provide vehicle registration certificate and driver's license
+3. Application process:
+   - Log in to the OA system "Administrative Services" - "Parking Space Application"
+   - Upload scanned vehicle registration certificate and driver's license
+   - Submit for approval (allocated in order of application)
+4. Parking fees:
+   - Fixed parking space: 300 RMB/month (deducted from salary)
+   - Temporary parking: 10 RMB/day
+Visitor parking requires registration at the front desk; free parking for 2 hours.
+
+Q: How do I contact each department?
+A: Company department contact information:
+[Administration Department] Extension 8888 | admin@company.com
+[Human Resources Department] Extension 8899 | hr@company.com
+[IT Department] Extension 6666 | it@company.com
+[Legal Department] Extension 7777 | legal@company.com
+[Finance Department] Extension 8866 | finance@company.com
+[Procurement Department] Extension 8855 | purchase@company.com
+Switchboard: 010-XXXX-XXXX
+Front Desk: Extension 8000
+For more information, check the OA system "Directory" module.

@@ -1,17 +1,17 @@
-# 智能客服机器人 - Railway 快速部署
+# Intelligent customer service robot - Railway Rapid deployment
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/your-template-id)
 
-## 🚀 一键部署到 Railway
+## 🚀 One-click deployment to Railway
 
-### 步骤 1：点击部署按钮
+### step 1：Click the deploy button
 
-点击上方的 "Deploy on Railway" 按钮，或访问：
+Click above "Deploy on Railway" button, or visit:
 - [Railway Dashboard](https://railway.app/dashboard)
 
-### 步骤 2：配置环境变量
+### step 2：Configure environment variables
 
-在部署页面设置以下必需的环境变量：
+Set the following required environment variables on the deployment page:
 
 ```bash
 OPENAI_API_KEY=sk-your-api-key-here
@@ -19,104 +19,104 @@ OPENAI_BASE_URL=https://api.deepseek.com/v1
 LLM_MODEL=deepseek-chat
 ```
 
-### 步骤 3：等待部署完成
+### step 3：Wait for deployment to complete
 
-- 首次部署约需 5-10 分钟（下载依赖和模型）
-- Railway 会自动分配一个公网 URL
+- Initial deployment takes approx. 5-10 Minutes (download dependencies and models)
+- Railway A public network will be automatically assigned URL
 
-### 步骤 4：验证部署
+### step 4：Verify deployment
 
-访问你的 Railway URL：
+access your Railway URL：
 
 ```bash
-# 健康检查
+# health check
 https://your-app.railway.app/health
 
-# API 文档
+# API document
 https://your-app.railway.app/docs
 
-# 状态图
+# state diagram
 https://your-app.railway.app/api/v1/graph
 ```
 
-## 📝 测试 API
+## 📝 test API
 
 ```bash
-# 创建会话
+# Create session
 curl -X POST https://your-app.railway.app/api/v1/sessions \
   -H "Content-Type: application/json" \
   -d '{"user_id": "test_user"}'
 
-# 发送消息
+# Send message
 curl -X POST customservicerobot-production.up.railway.app/api/v1/chat \
   -H "Content-Type: application/json" \
   -d '{
-    "message": "你好",
+    "message": "Hello",
     "session_id": "your-session-id"
   }'
 ```
 
-## 🔧 环境变量说明
+## 🔧 Environment variable description
 
-| 变量名 | 必需 | 默认值 | 说明 |
+| variable name | required | default value | illustrate |
 |--------|------|--------|------|
-| `OPENAI_API_KEY` | ✅ | - | OpenAI 兼容的 API Key |
+| `OPENAI_API_KEY` | ✅ | - | OpenAI compatible API Key |
 | `OPENAI_BASE_URL` | ✅ | - | API Base URL |
-| `LLM_MODEL` | ❌ | `deepseek-chat` | 使用的模型名称 |
-| `TOP_K_RESULTS` | ❌ | `3` | 知识库检索数量 |
-| `INTENT_CONFIDENCE_THRESHOLD` | ❌ | `0.6` | 意图识别阈值 |
-| `PORT` | ❌ | 自动分配 | Railway 自动设置 |
+| `LLM_MODEL` | ❌ | `deepseek-chat` | model name to use |
+| `TOP_K_RESULTS` | ❌ | `3` | Number of knowledge base searches |
+| `INTENT_CONFIDENCE_THRESHOLD` | ❌ | `0.6` | Intent recognition threshold |
+| `PORT` | ❌ | automatic allocation | Railway Automatically set |
 
-## 📊 API 端点
+## 📊 API endpoint
 
-- `GET /health` - 健康检查
-- `POST /api/v1/sessions` - 创建会话
-- `POST /api/v1/chat` - 对话（返回完整执行日志）
-- `GET /api/v1/graph` - 获取状态图
-- `GET /api/v1/sessions/{session_id}` - 查询会话
+- `GET /health` - health check
+- `POST /api/v1/sessions` - Create session
+- `POST /api/v1/chat` - Conversation (returns full execution log)
+- `GET /api/v1/graph` - Get state diagram
+- `GET /api/v1/sessions/{session_id}` - query session
 
-## 📖 完整文档
+## 📖 Full documentation
 
-- [API 使用文档](./API_README.md)
-- [Railway 详细部署指南](./RAILWAY_DEPLOY.md)
+- [API Use documentation](./API_README.md)
+- [Railway Detailed deployment guide](./RAILWAY_DEPLOY.md)
 
-## 💰 成本估算
+## 💰 cost estimate
 
-- **免费额度**：Railway 提供 $5/月免费额度
-- **预估成本**：约 $7-10/月（1GB内存，24/7运行）
-- **API 调用**：DeepSeek 约 $0.14/百万tokens
+- **Free quota**：Railway supply $5/Monthly free quota
+- **Estimated cost**：about $7-10/Month (1GB RAM, 24/7 operation)
+- **API call**：DeepSeek about $0.14/Millions of tokens
 
-## ⚡ 性能优化
+## ⚡ Performance optimization
 
-- embedding 模型已在构建时预下载
-- 首次启动约 30-60 秒
-- 支持并发请求
-- 自动缓存模型
+- embedding Models are pre-downloaded at build time
+- First launch approx. 30-60 Second
+- Support concurrent requests
+- Automatic caching of models
 
-## 🐛 常见问题
+## 🐛 FAQ
 
-### 构建失败？
-- 检查 Railway 日志
-- 可能是模型下载超时，重新触发构建
+### Build failed?
+- examine Railway log
+- It may be that the model download times out and the build is re-triggered.
 
-### API 报错？
-- 检查环境变量 `OPENAI_API_KEY` 是否正确
-- 确认 API Key 有余额
+### API Report an error?
+- Check environment variables `OPENAI_API_KEY` Is it correct?
+- confirm API Key Have balance
 
-### 内存不足？
-- 升级 Railway 计划
-- 或使用更小的 embedding 模型
+### Not enough memory?
+- upgrade Railway plan
+- or use smaller embedding Model
 
-## 🔗 链接
+## 🔗 Link
 
-- [Railway 官网](https://railway.app)
-- [Railway 文档](https://docs.railway.app)
+- [Railway Official website](https://railway.app)
+- [Railway document](https://docs.railway.app)
 - [DeepSeek API](https://platform.deepseek.com)
 
-## 📞 支持
+## 📞 support
 
-- 提交 Issue 到 GitHub
-- 加入 Railway Discord 社区
+- submit Issue arrive GitHub
+- join in Railway Discord Community
 
 ---
 

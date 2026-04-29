@@ -1,5 +1,5 @@
 """
-企业内部查询助手主入口
+Main entry point for the internal enterprise query assistant
 """
 import uuid
 from typing import Dict, Any
@@ -12,49 +12,49 @@ from .log_collector import LogCollector
 
 
 class EnterpriseQueryBot:
-    """企业内部查询助手类"""
+    """Internal enterprise query assistant class"""
 
     def __init__(self):
-        """初始化查询助手"""
-        print("正在初始化企业内部查询助手...")
+        """Initialize the query assistant"""
+        print("Initializing internal enterprise query assistant...")
 
-        # 加载知识库
-        print("正在加载知识库...")
+        # Load knowledge base
+        print("Loading knowledge base...")
         knowledge_base.load_knowledge_base()
 
-        # 创建状态图
-        print("正在创建状态图...")
+        # Create state graph
+        print("Creating state graph...")
         self.graph = create_enterprise_query_graph()
 
-        # 会话历史
+        # Session history
         self.sessions = {}
 
-        print("企业内部查询助手初始化完成！\n")
+        print("Internal enterprise query assistant initialization complete!\n")
 
     def save_graph_to_png(self, output_path: str = "customer_service_graph.png"):
         """
-        将状态图保存为PNG文件
+        Save the state graph as a PNG file
 
         Args:
-            output_path: 输出文件路径，默认为 "customer_service_graph.png"
+            output_path: Output file path, default is "customer_service_graph.png"
         """
         try:
-            # 获取图并保存为PNG
+            # Get graph and save as PNG
             png_data = self.graph.get_graph().draw_mermaid_png()
 
             with open(output_path, "wb") as f:
                 f.write(png_data)
 
-            print(f"状态图已保存到: {output_path}")
+            print(f"State graph saved to: {output_path}")
             return True
         except Exception as e:
-            print(f"保存状态图时出错: {e}")
+            print(f"Error saving state graph: {e}")
             import traceback
             traceback.print_exc()
             return False
 
     def create_session(self, user_id: str = None) -> str:
-        """创建新会话"""
+        """Create a new session"""
         session_id = str(uuid.uuid4())
         if user_id is None:
             user_id = f"user_{uuid.uuid4().hex[:8]}"
@@ -68,37 +68,37 @@ class EnterpriseQueryBot:
 
     def chat(self, user_input: str, session_id: str = None, capture_logs: bool = False) -> Dict[str, Any]:
         """
-        处理用户输入并返回响应
+        Process user input and return response
 
         Args:
-            user_input: 用户输入的消息
-            session_id: 会话ID，如果为None则创建新会话
-            capture_logs: 是否捕获并返回执行日志
+            user_input: User input message
+            session_id: Session ID; if None, creates a new session
+            capture_logs: Whether to capture and return execution logs
 
         Returns:
-            如果 capture_logs=False: 返回字符串响应（保持向后兼容）
-            如果 capture_logs=True: 返回字典 {"response": str, "logs": List[str], "session_id": str}
+            If capture_logs=False: returns string response (backward compatible)
+            If capture_logs=True: returns dict {"response": str, "logs": List[str], "session_id": str}
         """
-        # 创建日志收集器
+        # Create log collector
         log_collector = None
         if capture_logs:
             log_collector = LogCollector()
             log_collector.start_capture()
 
         try:
-            # 如果没有提供session_id，创建新会话
+            # Create new session if session_id is not provided
             if session_id is None or session_id not in self.sessions:
                 session_id = self.create_session()
 
-            # 获取会话历史
+            # Get session history
             session = self.sessions[session_id]
             user_id = session["user_id"]
 
-            # 添加用户消息
+            # Add user message
             user_message = HumanMessage(content=user_input)
             session["messages"].append(user_message)
 
-            # 构建初始状态
+            # Build initial state
             initial_state: EnterpriseQueryState = {
                 "messages": [user_message],
                 "session_id": session_id,
@@ -113,21 +113,21 @@ class EnterpriseQueryBot:
                 "next_step": None
             }
 
-            # 执行状态图
+            # Execute state graph
             result = self.graph.invoke(initial_state)
 
-            # 获取最终响应
-            response = result.get("final_response", "抱歉，我暂时无法回答这个问题。")
+            # Get final response
+            response = result.get("final_response", "Sorry, I cannot answer this question right now.")
 
-            # 保存到会话历史
+            # Save to session history
             session["messages"].append(HumanMessage(content=response))
 
-            # 返回结果
+            # Return result
             if capture_logs:
                 logs = log_collector.stop_capture()
                 return {
                     "response": response,
-                    "logs": [log for log in logs if log.strip()],  # 过滤空行
+                    "logs": [log for log in logs if log.strip()],
                     "session_id": session_id,
                     "status": "success"
                 }
@@ -135,11 +135,11 @@ class EnterpriseQueryBot:
                 return response
 
         except Exception as e:
-            print(f"处理消息时出错: {e}")
+            print(f"Error processing message: {e}")
             import traceback
             traceback.print_exc()
 
-            error_msg = "抱歉，处理您的请求时遇到了问题，请稍后再试。"
+            error_msg = "Sorry, there was an issue processing your request. Please try again later."
 
             if capture_logs:
                 logs = log_collector.stop_capture() if log_collector else []
@@ -154,14 +154,14 @@ class EnterpriseQueryBot:
                 return error_msg
 
     def run_interactive(self):
-        """运行交互式命令行界面"""
+        """Run interactive command-line interface"""
         print("=" * 60)
-        print("欢迎使用企业内部查询助手！")
+        print("Welcome to the internal enterprise query assistant!")
         print("=" * 60)
-        print("提示：")
-        print("- 输入您的问题开始对话")
-        print("- 输入 'quit' 或 'exit' 退出")
-        print("- 输入 'new' 开始新会话")
+        print("Tips:")
+        print("- Enter your question to start chatting")
+        print("- Enter 'quit' or 'exit' to leave")
+        print("- Enter 'new' to start a new session")
         print("=" * 60)
         print()
 
@@ -169,47 +169,47 @@ class EnterpriseQueryBot:
 
         while True:
             try:
-                # 获取用户输入
-                user_input = input("您: ").strip()
+                # Get user input
+                user_input = input("You: ").strip()
 
-                # 检查退出命令
-                if user_input.lower() in ['quit', 'exit', '退出']:
-                    print("\n感谢使用，再见！")
+                # Check exit command
+                if user_input.lower() in ['quit', 'exit']:
+                    print("\nThanks for using the assistant. Goodbye!")
                     break
 
-                # 检查新会话命令
-                if user_input.lower() in ['new', '新会话']:
+                # Check new session command
+                if user_input.lower() in ['new', 'new session']:
                     session_id = None
-                    print("\n已开始新会话\n")
+                    print("\nNew session started\n")
                     continue
 
-                # 忽略空输入
+                # Ignore empty input
                 if not user_input:
                     continue
 
-                # 处理消息
+                # Process message
                 response = self.chat(user_input, session_id)
 
-                # 如果是新会话，获取session_id
+                # Get session_id for new session
                 if session_id is None:
                     session_id = list(self.sessions.keys())[-1]
 
-                # 打印响应
-                print(f"\n助手: {response}\n")
+                # Print response
+                print(f"\nAssistant: {response}\n")
                 print("-" * 60)
 
             except KeyboardInterrupt:
-                print("\n\n感谢使用，再见！")
+                print("\n\nThanks for using the assistant. Goodbye!")
                 break
             except Exception as e:
-                print(f"\n发生错误: {e}\n")
+                print(f"\nAn error occurred: {e}\n")
 
 
 def main():
-    """主函数"""
+    """Main function"""
     bot = EnterpriseQueryBot()
 
-    # 保存状态图到PNG
+    # Save state graph to PNG
     bot.save_graph_to_png("customer_service_graph.png")
 
     bot.run_interactive()

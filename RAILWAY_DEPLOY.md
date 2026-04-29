@@ -1,73 +1,73 @@
-# Railway 部署指南
+# Railway Deployment Guide
 
-本文档介绍如何将智能客服机器人部署到 Railway 平台。
+This document describes how to deploy intelligent customer service robots to Railway platform.
 
-## 前置准备
+## Preparation
 
-1. **注册 Railway 账号**
-   - 访问 [Railway.app](https://railway.app)
-   - 使用 GitHub 账号登录（推荐）
+1. **register Railway account**
+   - access [Railway.app](https://railway.app)
+   - use GitHub Account login (recommended)
 
-2. **准备 API Key**
-   - DeepSeek API Key（或其他 OpenAI 兼容的 API）
-   - 确保 API Key 有足够的额度
+2. **Prepare API Key**
+   - DeepSeek API Key（or other OpenAI compatible API）
+   - make sure API Key Have enough credit
 
-## 部署步骤
+## Deployment steps
 
-### 方式一：从 GitHub 仓库部署（推荐）
+### Method 1: From GitHub Warehouse deployment (recommended)
 
-#### 1. 推送代码到 GitHub
+#### 1. push code to GitHub
 
 ```bash
-# 初始化 Git 仓库（如果还没有）
+# initialization Git Warehouse (if you don't have one yet)
 git init
 
-# 添加所有文件
+# add all files
 git add .
 
-# 提交代码
+# Submit code
 git commit -m "Initial commit for Railway deployment"
 
-# 添加远程仓库
+# Add remote warehouse
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
 
-# 推送到 GitHub
+# push to GitHub
 git push -u origin main
 ```
 
-#### 2. 在 Railway 上部署
+#### 2. exist Railway Deploy on
 
-1. 登录 [Railway Dashboard](https://railway.app/dashboard)
-2. 点击 **"New Project"**
-3. 选择 **"Deploy from GitHub repo"**
-4. 选择你的仓库
-5. Railway 会自动检测 `Dockerfile` 并开始构建
+1. Log in [Railway Dashboard](https://railway.app/dashboard)
+2. Click **"New Project"**
+3. choose **"Deploy from GitHub repo"**
+4. Choose your warehouse
+5. Railway Will automatically detect `Dockerfile` and start building
 
-#### 3. 配置环境变量
+#### 3. Configure environment variables
 
-在 Railway 项目的 **Variables** 标签页中添加以下环境变量：
+exist Railway project **Variables** Add the following environment variables to the tab:
 
 ```bash
-# 必需配置
+# Required configuration
 OPENAI_API_KEY=sk-your-api-key-here
 OPENAI_BASE_URL=https://api.deepseek.com/v1
 LLM_MODEL=deepseek-chat
 
-# 可选配置
+# Optional configuration
 TOP_K_RESULTS=3
 INTENT_CONFIDENCE_THRESHOLD=0.6
 ```
 
-#### 4. 部署完成
+#### 4. Deployment completed
 
-- Railway 会自动分配一个公网域名，如：`https://your-app.railway.app`
-- 首次部署可能需要 5-10 分钟（需要下载 embedding 模型）
+- Railway A public domain name will be automatically assigned, such as:`https://your-app.railway.app`
+- First deployment may require 5-10 minutes (requires download embedding Model)
 
 ---
 
-### 方式二：使用 Railway CLI 部署
+### Method 2: Use Railway CLI deploy
 
-#### 1. 安装 Railway CLI
+#### 1. Install Railway CLI
 
 ```bash
 # macOS/Linux
@@ -77,22 +77,22 @@ curl -fsSL https://railway.app/install.sh | sh
 iwr https://railway.app/install.ps1 | iex
 ```
 
-#### 2. 登录 Railway
+#### 2. Log in Railway
 
 ```bash
 railway login
 ```
 
-#### 3. 初始化项目
+#### 3. Initialize project
 
 ```bash
-# 在项目目录下
+# in the project directory
 railway init
 
-# 选择 "Create a new project"
+# choose "Create a new project"
 ```
 
-#### 4. 设置环境变量
+#### 4. Set environment variables
 
 ```bash
 railway variables set OPENAI_API_KEY=sk-your-api-key-here
@@ -100,7 +100,7 @@ railway variables set OPENAI_BASE_URL=https://api.deepseek.com/v1
 railway variables set LLM_MODEL=deepseek-chat
 ```
 
-#### 5. 部署
+#### 5. deploy
 
 ```bash
 railway up
@@ -108,53 +108,53 @@ railway up
 
 ---
 
-## 验证部署
+## Verify deployment
 
-### 1. 检查健康状态
+### 1. Check health status
 
 ```bash
 curl https://your-app.railway.app/health
 ```
 
-期望响应：
+Expected response:
 ```json
 {
   "status": "healthy",
-  "message": "服务运行正常"
+  "message": "The service is running normally"
 }
 ```
 
-### 2. 测试对话接口
+### 2. Test conversational interface
 
 ```bash
 curl -X POST https://your-app.railway.app/api/v1/chat \
   -H "Content-Type: application/json" \
   -d '{
-    "message": "你好"
+    "message": "Hello"
   }'
 ```
 
-### 3. 查看 API 文档
+### 3. Check API document
 
-访问：`https://your-app.railway.app/docs`
+access:`https://your-app.railway.app/docs`
 
-### 4. 查看状态图
+### 4. View status diagram
 
-访问：`https://your-app.railway.app/api/v1/graph`
+access:`https://your-app.railway.app/api/v1/graph`
 
 ---
 
-## 监控和日志
+## Monitoring and logging
 
-### 查看实时日志
+### View real-time logs
 
-在 Railway Dashboard 中：
-1. 进入你的项目
-2. 点击 **Deployments** 标签
-3. 选择最新的部署
-4. 查看 **Logs** 实时输出
+exist Railway Dashboard middle:
+1. Go to your project
+2. Click **Deployments** Label
+3. Select the latest deployment
+4. Check **Logs** real time output
 
-### 使用 CLI 查看日志
+### use CLI View log
 
 ```bash
 railway logs
@@ -162,160 +162,160 @@ railway logs
 
 ---
 
-## 自定义域名
+## Custom domain name
 
-### 1. 在 Railway 添加自定义域名
+### 1. exist Railway Add custom domain name
 
-1. 进入项目 → **Settings** → **Domains**
-2. 点击 **"Add Custom Domain"**
-3. 输入你的域名（如 `api.yourdomain.com`）
+1. Enter project → **Settings** → **Domains**
+2. Click **"Add Custom Domain"**
+3. Enter your domain name (e.g. `api.yourdomain.com`）
 
-### 2. 配置 DNS
+### 2. Configuration DNS
 
-在你的域名服务商添加 CNAME 记录：
+Add it to your domain name service provider CNAME Record:
 
 ```
 Type: CNAME
-Name: api (或你的子域名)
+Name: api (or your subdomain)
 Value: your-app.railway.app
 ```
 
-### 3. 等待 SSL 证书生成
+### 3. wait SSL Certificate generation
 
-Railway 会自动为你的自定义域名生成 SSL 证书（Let's Encrypt）。
+Railway Will be automatically generated for your custom domain name SSL Certificate (Let's Encrypt）。
 
 ---
 
-## 性能优化
+## Performance optimization
 
-### 1. Docker BuildKit 缓存加速（推荐）
+### 1. Docker BuildKit Cache acceleration (recommended)
 
-Dockerfile 已配置使用 BuildKit 缓存挂载，可以显著加快构建速度：
+Dockerfile Already configured to use BuildKit Cache mounts can significantly speed up builds:
 
-**本地构建时启用 BuildKit**：
+**Enabled when building locally BuildKit**：
 ```bash
-# 方式1：环境变量
+# Method 1: Environment variables
 export DOCKER_BUILDKIT=1
 docker build -t customer-service-bot .
 
-# 方式2：直接使用 docker buildx
+# Method 2: Use directly docker buildx
 docker buildx build -t customer-service-bot .
 ```
 
-**优化效果**：
-- ✅ pip 依赖缓存：第二次构建时不会重新下载 torch（899.8 MB）等大包
-- ✅ HuggingFace 模型缓存：embedding 模型只下载一次
-- ✅ 构建时间：从 5-10 分钟降低到 30 秒左右（当缓存命中时）
+**Optimization effect**：
+- ✅ pip Dependency cache: will not be re-downloaded on the second build torch（899.8 MB）Waiting for big package
+- ✅ HuggingFace Model cache: embedding The model is only downloaded once
+- ✅ Build time: from 5-10 minutes reduced to 30 Seconds or so (when cache hits)
 
-**Railway 自动使用 BuildKit**：Railway 平台默认启用 BuildKit，无需额外配置。
+**Railway automatically used BuildKit**：Railway Platform enabled by default BuildKit，No additional configuration is required.
 
-### 2. 增加内存
+### 2. increase memory
 
-如果遇到 OOM（内存不足）错误：
+If you encounter OOM（Out of memory) error:
 
-1. 进入项目 → **Settings** → **Resources**
-2. 增加 Memory 限制到 2GB 或更高
+1. Enter project → **Settings** → **Resources**
+2. Increase Memory limited to 2GB or higher
 
-### 3. 使用 Railway 的持久化存储
+### 3. use Railway persistent storage
 
-如果需要持久化数据：
+If you need to persist data:
 
 ```bash
 railway volume create --name data --mount-path /app/data
 ```
 
-### 4. 优化模型加载
+### 4. Optimize model loading
 
-embedding 模型首次加载较慢，已在 Dockerfile 中预下载并使用缓存：
+embedding The model loads slowly for the first time and has been Dockerfile Pre-download and use cache:
 
 ```dockerfile
-# 使用缓存挂载避免重复下载
+# Use cache mounts to avoid repeated downloads
 RUN --mount=type=cache,target=/app/.cache/huggingface \
     python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
 ```
 
 ---
 
-## 常见问题
+## FAQ
 
-### 1. 构建失败
+### 1. Build failed
 
-**问题**：`ERROR: failed to solve: process "/bin/sh -c python -c ..."`
+**question**：`ERROR: failed to solve: process "/bin/sh -c python -c ..."`
 
-**解决**：可能是网络问题导致模型下载失败。
+**solve**：It may be a network problem that causes the model download to fail.
 
-**临时方案**：注释掉 Dockerfile 中的模型预下载行，让模型在首次运行时下载。
+**temporary solution**：Comment out Dockerfile The model predownload line in has the model downloaded the first time it is run.
 
 ```dockerfile
-# 注释这一行
+# Comment this line
 # python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
 ```
 
-### 2. 启动超时
+### 2. Start timeout
 
-**问题**：服务启动超过 Railway 的超时限制。
+**question**：Service startup exceeds Railway timeout limit.
 
-**解决**：
-- 增加 `start_period` 在 HEALTHCHECK 中（已设置为 60s）
-- 确保模型已在构建时预下载
+**solve**：
+- Increase `start_period` exist HEALTHCHECK Medium (set to 60s）
+- Make sure the model is pre-downloaded at build time
 
-### 3. API Key 报错
+### 3. API Key Report an error
 
-**问题**：`AuthenticationError: Invalid API key`
+**question**：`AuthenticationError: Invalid API key`
 
-**解决**：
-1. 检查环境变量 `OPENAI_API_KEY` 是否正确设置
-2. 确保 API Key 有效且有余额
-3. 在 Railway Dashboard 中重新检查环境变量
+**solve**：
+1. Check environment variables `OPENAI_API_KEY` Is it set correctly?
+2. make sure API Key Valid and with balance
+3. exist Railway Dashboard Recheck environment variables in
 
-### 4. 内存不足
+### 4. Out of memory
 
-**问题**：`Killed` 或 OOM 错误
+**question**：`Killed` or OOM mistake
 
-**解决**：
-- 升级 Railway 计划以获取更多内存
-- 或使用更小的 embedding 模型：
+**solve**：
+- upgrade Railway Plan for more memory
+- or use smaller embedding Model:
   ```bash
   railway variables set EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
   ```
 
 ---
 
-## 成本估算
+## cost estimate
 
-Railway 定价（2024）：
+Railway Pricing (2024):
 
-- **Hobby Plan（免费）**：
-  - $5 免费额度/月
-  - 适合测试和小规模使用
+- **Hobby Plan（free)**：
+  - $5 Free quota/month
+  - Suitable for testing and small-scale use
 
 - **Pro Plan**：
-  - $20/月
-  - 包含 $20 使用额度
-  - 超出按量付费
+  - $20/moon
+  - Include $20 Usage quota
+  - Pay as you go
 
-预估成本：
-- CPU：约 $0.01/小时
-- 内存：约 $0.01/GB/小时
-- 网络：前 100GB 免费
+Estimated cost:
+- CPU：about $0.01/Hour
+- Memory: approx. $0.01/GB/Hour
+- Network: former 100GB free
 
-**示例**：
-- 1GB 内存，24/7 运行：~$7/月
-- 加上 API 调用费用（DeepSeek）：~$10-20/月
+**Example**：
+- 1GB Memory, 24/7 run:~$7/moon
+- plus API Call cost (DeepSeek):~$10-20/moon
 
 ---
 
-## 自动部署（CI/CD）
+## Automated deployment (CI/CD)
 
-Railway 支持自动部署：
+Railway Support automatic deployment:
 
-1. **监听 GitHub Push**：
-   - 每次推送到 main 分支自动部署
-   - 在 Railway 项目设置中启用
+1. **monitor GitHub Push**：
+   - Push to main Branch automatic deployment
+   - exist Railway Enable in project settings
 
-2. **使用 GitHub Actions**：
+2. **use GitHub Actions**：
 
-创建 `.github/workflows/deploy.yml`：
+create `.github/workflows/deploy.yml`：
 
 ```yaml
 name: Deploy to Railway
@@ -339,66 +339,66 @@ jobs:
 
 ---
 
-## 安全建议
+## Security advice
 
-1. **不要在代码中硬编码 API Key**
-   - 使用环境变量
-   - `.env.example` 仅作为模板
+1. **Don't hardcode it in your code API Key**
+   - Use environment variables
+   - `.env.example` only as a template
 
-2. **定期轮换 API Key**
-   - 在 Railway Variables 中更新
-   - 重启服务生效
+2. **Regular rotation API Key**
+   - exist Railway Variables Updating
+   - Restarting the service takes effect
 
-3. **限制访问**
-   - 考虑添加 API Key 认证
-   - 使用 Railway 的 IP 白名单功能（Pro Plan）
+3. **Restrict access**
+   - Consider adding API Key Certification
+   - use Railway of IP Whitelist function (Pro Plan）
 
-4. **监控使用情况**
-   - 定期检查 Railway 和 API 提供商的使用统计
-   - 设置预算告警
+4. **Monitor usage**
+   - Regular inspection Railway and API Provider usage statistics
+   - Set budget alerts
 
 ---
 
-## 技术支持
+## Technical support
 
-- **Railway 文档**：https://docs.railway.app
+- **Railway document**：https://docs.railway.app
 - **Railway Discord**：https://discord.gg/railway
-- **项目 Issues**：提交到你的 GitHub 仓库
+- **project Issues**：Submit to your GitHub storehouse
 
 ---
 
-## 快速命令参考
+## Quick command reference
 
 ```bash
-# 查看服务状态
+# Check service status
 railway status
 
-# 查看日志
+# View log
 railway logs
 
-# 查看环境变量
+# View environment variables
 railway variables
 
-# 设置环境变量
+# Set environment variables
 railway variables set KEY=VALUE
 
-# 重新部署
+# Redeploy
 railway up
 
-# 打开项目仪表板
+# Open project dashboard
 railway open
 ```
 
 ---
 
-## 总结
+## Summarize
 
-恭喜！你已经成功将智能客服机器人部署到 Railway。
+Congratulations! You have successfully deployed the intelligent customer service robot to Railway。
 
-**下一步**：
-- 配置自定义域名
-- 添加监控和告警
-- 优化性能和成本
-- 集成到你的应用中
+**Next step**：
+- Configure a custom domain name
+- Add monitoring and alarms
+- Optimize performance and cost
+- Integrate into your app
 
-有问题欢迎查看文档或提交 Issue！
+If you have any questions, please check the document or submit Issue！
