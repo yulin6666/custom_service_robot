@@ -6,7 +6,9 @@
       "Bash(pip show:*)",
       "Bash(find . -name '*.py' -exec grep -l '' {})",
       "Bash(python3 -c \"import langchain_openai; help\\(langchain_openai.OpenAIEmbeddings.__init__\\)\")",
-      "WebFetch(domain:api-docs.deepseek.com)"
+      "WebFetch(domain:api-docs.deepseek.com)",
+      "WebFetch(domain:docs.bigmodel.cn)",
+      "WebFetch(domain:python.langchain.com)"
     ]
   }
 }

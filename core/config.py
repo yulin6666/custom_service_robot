@@ -3,9 +3,11 @@ Configuration file
 """
 import os
 from pathlib import Path
+from typing import List
 from langchain_openai import ChatOpenAI
-from langchain_community.embeddings import ZhipuAIEmbeddings
+from langchain_core.embeddings import Embeddings
 from langchain_core.vectorstores import InMemoryVectorStore
+from zai import ZhipuAiClient
 
 # ===== Project root directory =====
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -27,10 +29,23 @@ llm = ChatOpenAI(
 
 # ===== Embedding model configuration =====
 zhipu_api_key = os.getenv("ZHIPU_API_KEY", "")
-embeddings = ZhipuAIEmbeddings(
-    model="embedding-2",
-    api_key=zhipu_api_key,
-)
+
+class ZhipuEmbeddings(Embeddings):
+    """ZhipuAI embedding wrapper compatible with LangChain"""
+
+    def __init__(self, api_key: str, model: str = "embedding-2"):
+        self.client = ZhipuAiClient(api_key=api_key)
+        self.model = model
+
+    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        response = self.client.embeddings.create(model=self.model, input=texts)
+        return [item.embedding for item in response.data]
+
+    def embed_query(self, text: str) -> List[float]:
+        response = self.client.embeddings.create(model=self.model, input=[text])
+        return response.data[0].embedding
+
+embeddings = ZhipuEmbeddings(api_key=zhipu_api_key)
 
 # ===== Vector Store configuration =====
 vector_store = InMemoryVectorStore(embeddings)
