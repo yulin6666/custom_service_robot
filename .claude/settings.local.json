@@ -8,7 +8,12 @@
       "Bash(python3 -c \"import langchain_openai; help\\(langchain_openai.OpenAIEmbeddings.__init__\\)\")",
       "WebFetch(domain:api-docs.deepseek.com)",
       "WebFetch(domain:docs.bigmodel.cn)",
-      "WebFetch(domain:python.langchain.com)"
+      "WebFetch(domain:python.langchain.com)",
+      "Bash(python3:*)",
+      "Bash(source venv/bin/activate)",
+      "Bash(pip install:*)",
+      "Bash(rm -rf venv)",
+      "Bash(/Users/lindediannao/.local/bin/python3.11 -m venv venv)"
     ]
   }
 }

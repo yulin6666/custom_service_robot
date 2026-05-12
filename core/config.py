@@ -3,6 +3,9 @@ Configuration file
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 from typing import List
 from langchain_openai import ChatOpenAI
 from langchain_core.embeddings import Embeddings
@@ -38,8 +41,13 @@ class ZhipuEmbeddings(Embeddings):
         self.model = model
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
-        response = self.client.embeddings.create(model=self.model, input=texts)
-        return [item.embedding for item in response.data]
+        results = []
+        batch_size = 64
+        for i in range(0, len(texts), batch_size):
+            batch = texts[i:i + batch_size]
+            response = self.client.embeddings.create(model=self.model, input=batch)
+            results.extend([item.embedding for item in response.data])
+        return results
 
     def embed_query(self, text: str) -> List[float]:
         response = self.client.embeddings.create(model=self.model, input=[text])
