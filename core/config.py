@@ -32,7 +32,7 @@ llm = ChatOpenAI(
 # Option 3: sentence-transformers/all-mpnet-base-v2 - English model (original config, poor Chinese performance)
 
 embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",  # Multilingual model, supports Chinese
+    model_name="sentence-transformers/all-MiniLM-L6-v2",
     model_kwargs={'device': 'cpu'},
     encode_kwargs={'normalize_embeddings': True}
 )
