@@ -27,9 +27,9 @@ llm = ChatOpenAI(
 # ===== Embedding model configuration =====
 # Using DeepSeek embedding API (OpenAI-compatible), no local PyTorch needed
 embeddings = OpenAIEmbeddings(
-    model="text-embedding-v3",
+    model="text-embedding-v2",
     openai_api_key=openai_api_key,
-    openai_api_base=base_url,
+    base_url=base_url,
 )
 
 # ===== Vector Store configuration =====

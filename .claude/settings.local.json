@@ -4,7 +4,8 @@
       "Bash(find . -maxdepth 4 -name '*.py' -exec wc -l {} +)",
       "Bash(python3 -c \"import pkg_resources; pkgs = [\\(p.project_name, p.version\\) for p in pkg_resources.working_set]; [print\\(p\\) for p in sorted\\(pkgs\\)]\")",
       "Bash(pip show:*)",
-      "Bash(find . -name '*.py' -exec grep -l '' {})"
+      "Bash(find . -name '*.py' -exec grep -l '' {})",
+      "Bash(python3 -c \"import langchain_openai; help\\(langchain_openai.OpenAIEmbeddings.__init__\\)\")"
     ]
   }
 }
