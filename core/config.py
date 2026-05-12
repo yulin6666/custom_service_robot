@@ -3,8 +3,7 @@ Configuration file
 """
 import os
 from pathlib import Path
-from langchain_openai import ChatOpenAI
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.vectorstores import InMemoryVectorStore
 
 # ===== Project root directory =====
@@ -26,15 +25,11 @@ llm = ChatOpenAI(
 )
 
 # ===== Embedding model configuration =====
-# Using multilingual embedding model (recommended)
-# Option 1: BAAI/bge-base-zh-v1.5 - Chinese optimized, good performance, moderate speed
-# Option 2: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 - Multilingual support
-# Option 3: sentence-transformers/all-mpnet-base-v2 - English model (original config, poor Chinese performance)
-
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2",
-    model_kwargs={'device': 'cpu'},
-    encode_kwargs={'normalize_embeddings': True}
+# Using DeepSeek embedding API (OpenAI-compatible), no local PyTorch needed
+embeddings = OpenAIEmbeddings(
+    model="text-embedding-v3",
+    openai_api_key=openai_api_key,
+    openai_api_base=base_url,
 )
 
 # ===== Vector Store configuration =====

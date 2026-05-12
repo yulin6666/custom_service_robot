@@ -7,10 +7,6 @@ langchain-community==0.3.13
 # LangGraph
 langgraph==0.2.59
 
-# HuggingFace
-langchain-huggingface==0.1.2
-sentence-transformers==3.3.1
-
 # Base Dependencies
 openai>=1.58.1,<2.0.0
 pydantic==2.10.4
