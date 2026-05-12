@@ -3,7 +3,8 @@ Configuration file
 """
 import os
 from pathlib import Path
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
+from langchain_community.embeddings import ZhipuAIEmbeddings
 from langchain_core.vectorstores import InMemoryVectorStore
 
 # ===== Project root directory =====
@@ -25,11 +26,10 @@ llm = ChatOpenAI(
 )
 
 # ===== Embedding model configuration =====
-# Using DeepSeek embedding API (OpenAI-compatible), no local PyTorch needed
-embeddings = OpenAIEmbeddings(
-    model="text-embedding-v2",
-    openai_api_key=openai_api_key,
-    base_url=base_url,
+zhipu_api_key = os.getenv("ZHIPU_API_KEY", "")
+embeddings = ZhipuAIEmbeddings(
+    model="embedding-2",
+    api_key=zhipu_api_key,
 )
 
 # ===== Vector Store configuration =====
